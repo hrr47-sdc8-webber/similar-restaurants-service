@@ -1,0 +1,15 @@
+{
+  "name": "zagat-similar-restaurants-module",
+  "version": "1.0",
+  "description": "this module show similar restaurant to the one displayed on a page",
+  "author": "Cinzia Borello",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}

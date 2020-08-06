@@ -12,7 +12,8 @@
     "test": "",
     "build": "webpack --config webpack.config.js",
     "start": "nodemon server/index.js",
-    "client": "webpack -d --watch"
+    "client": "webpack -d --watch",
+    "schema": "mysql -u root < database/schema.sql"
   },
   "dependencies": {
     "axios": "^0.19.2",

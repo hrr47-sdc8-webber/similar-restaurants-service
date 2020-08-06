@@ -13,7 +13,8 @@
     "build": "webpack --config webpack.config.js",
     "start": "nodemon server/index.js",
     "client": "webpack -d --watch",
-    "schema": "mysql -u root < database/schema.sql"
+    "schema": "mysql -u root < database/schema.sql",
+    "seed": ""
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -33,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "faker": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }

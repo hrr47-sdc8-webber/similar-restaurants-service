@@ -35,8 +35,22 @@ const seedDataPhotos = (url, restaurantId) => {
   });
 };
 
+// Given a restaurant id, populate name and category in title.
 const getTitle = (args, callback) => {
   const query = 'SELECT name, category FROM restaurants WHERE id = ?;';
+  connection.query(query, args, callback);
+};
+
+// Given a restaurant id, populate the grid with 2, 4, or 6 cards.
+// With similar (same category) restaurants nearby (same neighborhood).
+const getSimilar = (args, callback) => {
+  const query = 'SELECT name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE id = ?;';
+  connection.query(query, args, callback);
+};
+
+// Given a restaurant id, for each card, populate their photos.
+const getPhotos = (args, callback) => {
+  const query = 'SELECT url FROM photos WHERE restaurant_id = ?;';
   connection.query(query, args, callback);
 };
 
@@ -45,4 +59,6 @@ module.exports = {
   seedDataRestaurants,
   seedDataPhotos,
   getTitle,
+  getSimilar,
+  getPhotos,
 };

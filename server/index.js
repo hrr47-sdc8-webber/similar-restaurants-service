@@ -22,6 +22,17 @@ app.get('/zagat/restaurants/:id', (req, res) => {
   });
 });
 
+app.get('/zagat/photos/:id', (req, res) => {
+  const args = [req.params.id];
+  db.getPhotos(args, (err, data) => {
+    if (err) {
+      res.status(404).send('error in getting the photos');
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Listening at http://localhost:${port}`);

@@ -35,16 +35,16 @@ const seedDataPhotos = (url, restaurantId) => {
   });
 };
 
-// Given a restaurant id, populate name and category in title.
+// Given a restaurant id, populate name, category, and neighborhood in title.
 const getTitle = (args, callback) => {
-  const query = 'SELECT name, category FROM restaurants WHERE id = ?;';
+  const query = 'SELECT name, category, neighborhood FROM restaurants WHERE id = ?;';
   connection.query(query, args, callback);
 };
 
-// Given a restaurant id, populate the grid with 2, 4, or 6 cards.
+// Given a category and a neighborhood, populate the grid with max 6 cards.
 // With similar (same category) restaurants nearby (same neighborhood).
 const getSimilar = (args, callback) => {
-  const query = 'SELECT name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE id = ?;';
+  const query = 'SELECT name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? LIMIT 6;';
   connection.query(query, args, callback);
 };
 

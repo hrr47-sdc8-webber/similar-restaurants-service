@@ -35,8 +35,14 @@ const seedDataPhotos = (url, restaurantId) => {
   });
 };
 
+const getTitle = (args, callback) => {
+  const query = 'SELECT name, category FROM restaurants WHERE id = ?;';
+  connection.query(query, args, callback);
+};
+
 module.exports = {
   connection,
   seedDataRestaurants,
   seedDataPhotos,
+  getTitle,
 };

@@ -1,8 +1,8 @@
 const faker = require('faker');
 const db = require('./database');
 
-let id = 1;
-while (id <= 601) {
+let rId = 1;
+while (rId <= 601) {
   const firstName = faker.name.firstName();
   const color = faker.commerce.color();
   const word = faker.lorem.word();
@@ -15,9 +15,15 @@ while (id <= 601) {
   const category = faker.helpers.randomize(['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan']);
   const neighborhood = faker.helpers.randomize(['Mission', 'Haight Ashbury', 'Hayes Valley', 'Castro', 'North Beach', 'Financial District', 'Marina', 'Fillmore', 'Pacific Heights', 'Noe Valley']);
   // eslint-disable-next-line max-len
-  db.seedData(name, price, ratingLabel, ratingScore, description, urlHandle, category, neighborhood);
-  id += 1;
+  db.seedDataRestaurants(name, price, ratingLabel, ratingScore, description, urlHandle, category, neighborhood);
+  rId += 1;
 }
 
-
-// https://zigat.s3-us-west-1.amazonaws.com/image1.jpg
+let pId = 1;
+while (pId <= 3001) {
+  const imageId = Math.floor(Math.random() * (80 - 1) + 1);
+  const url = `https://zigat.s3-us-west-1.amazonaws.com/image${imageId}.jpg`;
+  const restaurantId = Math.floor(Math.random() * (601 - 1) + 1);
+  db.seedDataPhotos(url, restaurantId);
+  pId += 1;
+}

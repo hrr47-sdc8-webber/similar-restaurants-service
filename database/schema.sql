@@ -1,26 +1,26 @@
-DROP DATABASE IF EXISTS api;
+DROP DATABASE IF EXISTS zagat;
 
-CREATE DATABASE api;
+CREATE DATABASE zagat;
 
-USE api;
+USE zagat;
 
 CREATE TABLE restaurants (
-  id int AUTO_INCREMENT NOT NULL,
-  name varchar(30) NOT NULL,
-  price varchar(5) NOT NULL,
-  rating_label varchar(15),
-  rating_score decimal(1, 1),
+  id int AUTO_INCREMENT,
+  name varchar(50) UNIQUE,
+  price varchar(5),
+  rating_label varchar(10),
+  rating_score varchar(5),
   description varchar(100),
-  url_handle varchar(40) NOT NULL,
-  category varchar(15) NOT NULL,
-  neighborhood varchar(15) NOT NULL,
+  url_handle varchar(100) UNIQUE,
+  category varchar(20),
+  neighborhood varchar(20),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE photos (
-  id int AUTO_INCREMENT NOT NULL,
-  url varchar(70) NOT NULL,
-  restaurant_id int NOT NULL,
+  id int AUTO_INCREMENT,
+  url varchar(70) UNIQUE,
+  restaurant_id int,
   PRIMARY KEY (id),
   FOREIGN KEY (restaurant_id)
       REFERENCES restaurants(id)

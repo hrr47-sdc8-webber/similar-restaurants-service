@@ -44,7 +44,7 @@ const getTitle = (args, callback) => {
 // Given a category and a neighborhood, populate the grid with max 6 cards.
 // With similar (same category) restaurants nearby (same neighborhood).
 const getSimilar = (args, callback) => {
-  const query = 'SELECT name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? LIMIT 6;';
+  const query = 'SELECT DISTINCT id, name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? AND id != ? LIMIT 6;';
   connection.query(query, args, callback);
 };
 

@@ -18,7 +18,7 @@ app.get('/zagat/restaurants/:id', (req, res) => {
     if (err1) {
       res.status(404).send('error in getting the title info');
     } else {
-      const args2 = [restaurant.category, restaurant.neighborhood];
+      const args2 = [restaurant.category, restaurant.neighborhood, args1[0]];
       db.getSimilar(args2, (err2, data2) => {
         const similar = data2;
         if (err2) {

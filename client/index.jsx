@@ -16,6 +16,7 @@ class Grid extends React.Component {
       currentCategory: '',
       currentNeighborhood: '',
       similarRestaurants: [],
+      photos: [],
     };
   }
 
@@ -23,8 +24,8 @@ class Grid extends React.Component {
     this.getInfo(this.state.currentId);
   }
 
-  getInfo(id) {
-    axios.get(`/zagat/restaurants/${id}`)
+  getInfo(Id) {
+    axios.get(`/zagat/restaurants/${Id}`)
       .then((res) => {
         this.setState({
           currentName: res.data.restaurant.name,
@@ -38,14 +39,33 @@ class Grid extends React.Component {
       })
       .then(() => {
         // placeholder to invoke function to get photos
+        this.getPhotos(this.state.similarRestaurants[0].rid);
+      });
+  }
+
+  getPhotos(Id) {
+    axios.get(`/zagat/photos/${Id}`)
+      .then((res) => {
+        // console.log(res.data)
+        this.setState({
+          photos: res.data,
+        });
+        // console.log(this.state.photos)
+      })
+      .catch((err) => {
+        throw err;
+      })
+      .then(() => {
+        console.log('done');
       });
   }
 
   render() {
+    // console.log(this.state.photos);
     return (
-      <div className="gridTitle">
+      <div className="gridContainer">
         <GridHeader currentCategory={this.state.currentCategory} currentName={this.state.currentName} />
-        <CardsList similarRestaurants={this.state.similarRestaurants} />
+        <CardsList similarRestaurants={this.state.similarRestaurants} photos={this.state.photos} />
       </div>
     );
   }

@@ -37,20 +37,20 @@ const seedDataPhotos = (url, restaurantId) => {
 
 // Given a restaurant id, populate name, category, and neighborhood in title.
 const getTitle = (args, callback) => {
-  const query = 'SELECT name, category, neighborhood FROM restaurants WHERE id = ?;';
+  const query = 'SELECT name, category, neighborhood FROM restaurants WHERE rid = ?;';
   connection.query(query, args, callback);
 };
 
 // Given a category and a neighborhood, populate the grid with max 6 cards.
 // With similar (same category) restaurants nearby (same neighborhood).
 const getSimilar = (args, callback) => {
-  const query = 'SELECT DISTINCT id, name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? AND id != ? LIMIT 6;';
+  const query = 'SELECT DISTINCT rid, name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? AND rid != ? LIMIT 6;';
   connection.query(query, args, callback);
 };
 
 // Given a restaurant id, for each card, populate their photos.
 const getPhotos = (args, callback) => {
-  const query = 'SELECT url FROM photos WHERE restaurant_id = ?;';
+  const query = 'SELECT url, restaurant_id FROM photos WHERE restaurant_id = ?;';
   connection.query(query, args, callback);
 };
 

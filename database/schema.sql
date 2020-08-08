@@ -5,7 +5,7 @@ CREATE DATABASE zagat;
 USE zagat;
 
 CREATE TABLE restaurants (
-  id int AUTO_INCREMENT,
+  rid int AUTO_INCREMENT,
   name varchar(50) UNIQUE,
   price varchar(5),
   rating_label varchar(10),
@@ -14,14 +14,14 @@ CREATE TABLE restaurants (
   url_handle varchar(100) UNIQUE,
   category varchar(20),
   neighborhood varchar(20),
-  PRIMARY KEY (id)
+  PRIMARY KEY (rid)
 );
 
 CREATE TABLE photos (
-  id int AUTO_INCREMENT,
+  pid int AUTO_INCREMENT,
   url varchar(70),
   restaurant_id int,
-  PRIMARY KEY (id),
+  PRIMARY KEY (pid),
   FOREIGN KEY (restaurant_id)
-      REFERENCES restaurants(id)
+      REFERENCES restaurants(rid)
 );

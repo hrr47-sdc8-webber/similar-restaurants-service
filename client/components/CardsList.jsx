@@ -1,9 +1,22 @@
 import React from 'react';
-import CardEntry from './CardEntry';
+// eslint-disable-next-line import/extensions
+import CardEntry from './CardEntry.jsx';
 
-const CardsList = () => (
+const CardsList = ({ similarRestaurants }) => (
   <div>
-    test cards list
+    {similarRestaurants.map((restaurant) => (
+      <CardEntry
+        key={restaurant.id}
+        id={restaurant.id}
+        name={restaurant.name}
+        price={restaurant.price}
+        ratingLabel={restaurant.rating_label}
+        ratingScore={restaurant.rating_score}
+        category={restaurant.category}
+        description={restaurant.description}
+        neighborhood={restaurant.neighborhood}
+      />
+    ))}
     <CardEntry />
   </div>
 );

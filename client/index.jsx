@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+// eslint-disable-next-line import/extensions
+import CardsList from './components/CardsList.jsx';
+// eslint-disable-next-line import/extensions
+import GridHeader from './components/GridHeader.jsx';
+
 class Grid extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +15,7 @@ class Grid extends React.Component {
       currentName: '',
       currentCategory: '',
       currentNeighborhood: '',
-      similarRestaurants: []
+      similarRestaurants: [],
     };
   }
 
@@ -32,17 +37,15 @@ class Grid extends React.Component {
         throw err;
       })
       .then(() => {
-        // placeholder
+        // placeholder to invoke function to get photos
       });
   }
 
   render() {
     return (
       <div className="gridTitle">
-        More
-        {this.state.currentCategory}
-        Near
-        {this.state.currentName}
+        <GridHeader currentCategory={this.state.currentCategory} currentName={this.state.currentName} />
+        <CardsList similarRestaurants={this.state.similarRestaurants} />
       </div>
     );
   }

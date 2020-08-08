@@ -12,23 +12,21 @@ app.get('/', (req, res) => {
 });
 
 app.get('/zagat/restaurants/:id', (req, res) => {
-  const args = [req.params.id];
-  db.getTitle(args, (err, data) => {
-    if (err) {
+  const args1 = [req.params.id];
+  db.getTitle(args1, (err1, data1) => {
+    const restaurant = data1[0];
+    if (err1) {
       res.status(404).send('error in getting the title info');
     } else {
-      res.status(200).send(data);
-    }
-  });
-});
-
-app.get('/zagat/restaurants/:id-:category-:neighborhood', (req, res) => {
-  const args = [req.params.category, req.params.neighborhood];
-  db.getSimilar(args, (err, data) => {
-    if (err) {
-      res.status(404).send('error in getting similar restaurants');
-    } else {
-      res.status(200).send(data);
+      const args2 = [restaurant.category, restaurant.neighborhood];
+      db.getSimilar(args2, (err2, data2) => {
+        const similar = data2;
+        if (err2) {
+          res.status(404).send('error in getting similar restaurants');
+        } else {
+          res.status(200).send({ restaurant, similar });
+        }
+      });
     }
   });
 });

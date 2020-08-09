@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from 'styled-components';
 
 // eslint-disable-next-line import/extensions
 import CardsList from './components/CardsList.jsx';
 // eslint-disable-next-line import/extensions
 import GridHeader from './components/GridHeader.jsx';
+
+const Container = styled.div`
+  background-color: red;
+  width: 1440px;
+  height: 839px;
+  margin-top: 48px;
+  `;
 
 class Grid extends React.Component {
   constructor(props) {
@@ -63,10 +71,11 @@ class Grid extends React.Component {
   render() {
     // console.log(this.state.photos);
     return (
-      <div className="gridContainer">
-        <GridHeader currentCategory={this.state.currentCategory} currentName={this.state.currentName} />
+      <Container>
+        <GridHeader currentCategory={this.state.currentCategory}
+        currentName={this.state.currentName} />
         <CardsList similarRestaurants={this.state.similarRestaurants} photos={this.state.photos} />
-      </div>
+      </Container>
     );
   }
 }

@@ -1,11 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+
 // eslint-disable-next-line import/extensions
 import CardEntry from './CardEntry.jsx';
+
+const Grid = styled.div`
+  background-color: yellow;
+  width: 1440px;
+  height: 774px;
+  `;
 
 const CardsList = ({ similarRestaurants, photos }) => {
   //console.log({photos})
   return (
-    <div>
+    <Grid>
       {similarRestaurants.map((restaurant) => (
         <CardEntry
           key={restaurant.rid}
@@ -20,7 +28,7 @@ const CardsList = ({ similarRestaurants, photos }) => {
           photos={photos}
         />
       ))}
-    </div>
+    </Grid>
   );
 };
 

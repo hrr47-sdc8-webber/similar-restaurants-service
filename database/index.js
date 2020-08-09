@@ -36,22 +36,43 @@ const seedDataPhotos = (url, restaurantId) => {
 };
 
 // Given a restaurant id, populate name, category, and neighborhood in title.
-const getTitle = (args, callback) => {
+const getTitle = (args) => {
   const query = 'SELECT name, category, neighborhood FROM restaurants WHERE rid = ?;';
-  connection.query(query, args, callback);
+  return new Promise((resolve, reject) => {
+    connection.query(query, args, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
 };
 
 // Given a category and a neighborhood, populate the grid with max 6 cards.
 // With similar (same category) restaurants nearby (same neighborhood).
-const getSimilar = (args, callback) => {
+const getSimilar = (args) => {
   const query = 'SELECT DISTINCT rid, name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? AND rid != ? LIMIT 6;';
-  connection.query(query, args, callback);
+  return new Promise((resolve, reject) => {
+    connection.query(query, args, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
 };
 
 // Given a restaurant id, for each card, populate their photos.
-const getPhotos = (args, callback) => {
+const getPhotos = (args) => {
   const query = 'SELECT url, restaurant_id FROM photos WHERE restaurant_id = ?;';
-  connection.query(query, args, callback);
+  return new Promise((resolve, reject) => {
+    connection.query(query, args, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
 };
 
 module.exports = {

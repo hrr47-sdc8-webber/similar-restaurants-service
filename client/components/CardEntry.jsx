@@ -30,10 +30,8 @@ const CardImg = styled.div`
 const CardEntry = ({
   id, name, price, ratingLabel, ratingScore, category, description, neighborhood, photos
 }) => {
-  //console.log({photos})
   return (
     <Card>
-      {/* <img src="http://lorempixel.com/output/food-q-c-278-222-4.jpg" alt="" /> */}
       <CardImg>
         <PhotosCarousel photos={photos} />
       </CardImg>

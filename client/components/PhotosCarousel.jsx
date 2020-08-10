@@ -5,6 +5,7 @@ const PhotosCarousel = ({ photos }) => {
   return (
     <div>
       <img src="http://lorempixel.com/output/food-q-c-278-222-4.jpg" alt="" />
+      {/* <img src={photos[0].url} alt="" /> */}
     </div>
   );
 };

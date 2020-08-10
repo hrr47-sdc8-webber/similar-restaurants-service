@@ -14,7 +14,6 @@ const Container = styled.div`
   height: 838px;
   margin-top: 48px;
   color: #101820;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   `;
 
 class Grid extends React.Component {
@@ -33,8 +32,8 @@ class Grid extends React.Component {
     this.getInfo(this.state.currentId);
   }
 
-  getInfo(Id) {
-    axios.get(`/zagat/restaurants/${Id}`)
+  getInfo(id) {
+    axios.get(`/zagat/restaurants/${id}`)
       .then((res) => {
         this.setState({
           currentName: res.data.restaurant.name,
@@ -47,6 +46,7 @@ class Grid extends React.Component {
         throw err;
       })
       .then(() => {
+        // eslint-disable-next-line no-console
         console.log(this.state);
       });
   }
@@ -56,7 +56,8 @@ class Grid extends React.Component {
       <Container>
         <GridHeader currentCategory={this.state.currentCategory}
         currentName={this.state.currentName} />
-        <CardsList similarRestaurants={this.state.similarRestaurants} photos={this.state.photos} />
+        <CardsList similarRestaurants={this.state.similarRestaurants}
+        photos={this.state.photos} />
       </Container>
     );
   }

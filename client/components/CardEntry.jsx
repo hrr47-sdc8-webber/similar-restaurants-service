@@ -24,6 +24,10 @@ const CardText = styled.div`
 const Name = styled.div`
   letter-spacing: .086em;
   text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline #b70038 solid;
+  }
 `;
 
 const Details = styled.div`

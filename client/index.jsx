@@ -9,10 +9,11 @@ import CardsList from './components/CardsList.jsx';
 import GridHeader from './components/GridHeader.jsx';
 
 const Container = styled.div`
-  background-color: red;
+  background-color: rgb(250,250,250);
   width: 1440px;
-  height: 839px;
+  height: 838px;
   margin-top: 48px;
+  color: #101820;
   `;
 
 class Grid extends React.Component {
@@ -22,7 +23,6 @@ class Grid extends React.Component {
       currentId: '519',
       currentName: '',
       currentCategory: '',
-      currentNeighborhood: '',
       similarRestaurants: [],
       photos: [],
     };
@@ -32,49 +32,32 @@ class Grid extends React.Component {
     this.getInfo(this.state.currentId);
   }
 
-  getInfo(Id) {
-    axios.get(`/zagat/restaurants/${Id}`)
+  getInfo(id) {
+    axios.get(`/zagat/restaurants/${id}`)
       .then((res) => {
         this.setState({
           currentName: res.data.restaurant.name,
           currentCategory: res.data.restaurant.category,
-          currentNeighborhood: res.data.restaurant.neighborhood,
           similarRestaurants: res.data.similar,
+          photos: res.data.photos,
         });
       })
       .catch((err) => {
         throw err;
       })
       .then(() => {
-        // placeholder to invoke function to get photos
-        this.getPhotos(this.state.similarRestaurants[0].rid);
-      });
-  }
-
-  getPhotos(Id) {
-    axios.get(`/zagat/photos/${Id}`)
-      .then((res) => {
-        // console.log(res.data)
-        this.setState({
-          photos: res.data,
-        });
-        // console.log(this.state.photos)
-      })
-      .catch((err) => {
-        throw err;
-      })
-      .then(() => {
-        console.log('done');
+        // eslint-disable-next-line no-console
+        console.log(this.state);
       });
   }
 
   render() {
-    // console.log(this.state.photos);
     return (
       <Container>
         <GridHeader currentCategory={this.state.currentCategory}
         currentName={this.state.currentName} />
-        <CardsList similarRestaurants={this.state.similarRestaurants} photos={this.state.photos} />
+        <CardsList similarRestaurants={this.state.similarRestaurants}
+        photos={this.state.photos} />
       </Container>
     );
   }

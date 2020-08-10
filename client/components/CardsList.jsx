@@ -5,16 +5,16 @@ import styled from 'styled-components';
 import CardEntry from './CardEntry.jsx';
 
 const Grid = styled.div`
-  background-color: yellow;
   width: 1440px;
   height: 774px;
+  display: flex;
+  flex-wrap: wrap;
   `;
 
 const CardsList = ({ similarRestaurants, photos }) => {
-  //console.log({photos})
   return (
     <Grid>
-      {similarRestaurants.map((restaurant) => (
+      {similarRestaurants.map((restaurant, index) => (
         <CardEntry
           key={restaurant.rid}
           id={restaurant.rid}
@@ -25,7 +25,7 @@ const CardsList = ({ similarRestaurants, photos }) => {
           category={restaurant.category}
           description={restaurant.description}
           neighborhood={restaurant.neighborhood}
-          photos={photos}
+          photos={photos[index]}
         />
       ))}
     </Grid>

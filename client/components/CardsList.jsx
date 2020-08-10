@@ -5,9 +5,10 @@ import styled from 'styled-components';
 import CardEntry from './CardEntry.jsx';
 
 const Grid = styled.div`
-  background-color: yellow;
   width: 1440px;
   height: 774px;
+  display: flex;
+  flex-wrap: wrap;
   `;
 
 const CardsList = ({ similarRestaurants, photos }) => {

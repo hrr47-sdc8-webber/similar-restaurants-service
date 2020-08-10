@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import PhotosCarousel from './PhotosCarousel.jsx';
 
 const Card = styled.div`
-  background-color: gray;
+  background-color: rgb(250,250,250);
   width: 720px;
   height: 258px;
-  margin-bottom: 40px;
-  margin-right: 40px;
+  display: flex;
   `;
 
 const CardText = styled.div`
@@ -21,7 +20,6 @@ const CardText = styled.div`
   `;
 
 const CardImg = styled.div`
-  background-color: purple;
   width: 272px;
   height: 218px;
   float: left;

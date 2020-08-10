@@ -9,10 +9,12 @@ import CardsList from './components/CardsList.jsx';
 import GridHeader from './components/GridHeader.jsx';
 
 const Container = styled.div`
-  background-color: red;
+  background-color: rgb(250,250,250);
   width: 1440px;
-  height: 839px;
+  height: 838px;
   margin-top: 48px;
+  color: #101820;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   `;
 
 class Grid extends React.Component {

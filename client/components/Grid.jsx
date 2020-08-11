@@ -30,7 +30,8 @@ class Grid extends React.Component {
   }
 
   componentDidMount() {
-    this.getInfo(this.state.currentId);
+    const { currentId } = this.state;
+    this.getInfo(currentId);
   }
 
   getInfo(id) {
@@ -58,12 +59,21 @@ class Grid extends React.Component {
   }
 
   render() {
+    const {
+      currentCategory, currentName, similarRestaurants, photos,
+    } = this.state;
+
     return (
       <Container>
-        <GridHeader currentCategory={this.state.currentCategory}
-        currentName={this.state.currentName} />
-        <CardsList similarRestaurants={this.state.similarRestaurants}
-        photos={this.state.photos} handleClick={this.handleClick} />
+        <GridHeader
+          currentCategory={currentCategory}
+          currentName={currentName}
+        />
+        <CardsList
+          similarRestaurants={similarRestaurants}
+          photos={photos}
+          handleClick={this.handleClick}
+        />
       </Container>
     );
   }

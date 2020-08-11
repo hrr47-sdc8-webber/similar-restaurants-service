@@ -69,9 +69,9 @@ const CardEntry = ({
   id, name, price, ratingLabel, ratingScore,
   category, description, neighborhood, photos, handleClick,
 }) => (
-  <Card onClick={(e) => { handleClick(e, id); }}>
+  <Card>
     <PhotosCarousel photos={photos} />
-    <CardText>
+    <CardText onClick={(e) => { handleClick(e, id); }}>
       <Name>{name}</Name>
       <Details>
         <span>{category}</span>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/extensions
 import PhotosCarousel from './PhotosCarousel.jsx';
@@ -59,12 +60,6 @@ const Description = styled.div`
   letter-spacing: .013em;
 `;
 
-// const CardImg = styled.div`
-//   width: 272px;
-//   height: 218px;
-//   float: left;
-//   `;
-
 const CardEntry = ({
   id, name, price, ratingLabel, ratingScore,
   category, description, neighborhood, photos, handleClick,
@@ -81,7 +76,7 @@ const CardEntry = ({
         <span>{price}</span>
       </Details>
       <div>
-        <img src="https://zigat.s3-us-west-1.amazonaws.com/z-favicon.png" alt="logo" />
+        <img src="" alt="logo" />
         <span> </span>
         <RatingLabel>{ratingLabel}</RatingLabel>
         <span> </span>
@@ -91,5 +86,18 @@ const CardEntry = ({
     </CardText>
   </Card>
 );
+
+CardEntry.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  ratingLabel: PropTypes.string.isRequired,
+  ratingScore: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  neighborhood: PropTypes.string.isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default CardEntry;

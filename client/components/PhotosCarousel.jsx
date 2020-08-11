@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Carousel = styled.div`
   cursor: pointer;
@@ -56,15 +57,19 @@ const PhotosCarousel = ({ photos }) => {
 
   return (
     <Carousel>
-      <Slide src={photos[index].url} alt="" />
+      <Slide src={photos[index].url} alt="restaurant photo" />
       <ButtonLeft onClick={() => setIndex(index - 1)}>
-        {'<'}
+        &lt;
       </ButtonLeft>
       <ButtonRight onClick={() => setIndex(index + 1)}>
-        {'>'}
+        &gt;
       </ButtonRight>
     </Carousel>
   );
+};
+
+PhotosCarousel.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PhotosCarousel;

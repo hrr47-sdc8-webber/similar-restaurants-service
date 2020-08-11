@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Title = styled.span`
   width: 1408px;
@@ -24,5 +25,10 @@ const GridHeader = ({ currentCategory, currentName }) => (
     </Title>
   </div>
 );
+
+GridHeader.propTypes = {
+  currentCategory: PropTypes.string.isRequired,
+  currentName: PropTypes.string.isRequired,
+};
 
 export default GridHeader;

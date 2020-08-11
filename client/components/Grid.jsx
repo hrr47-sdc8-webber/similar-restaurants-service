@@ -19,6 +19,7 @@ class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // eslint-disable-next-line no-undef
       currentId: window.location.pathname.split('/')[1],
       currentName: '',
       currentCategory: '',
@@ -55,6 +56,7 @@ class Grid extends React.Component {
 
   handleClick(e, id) {
     this.handleClick = e.preventDefault();
+    // eslint-disable-next-line no-undef
     this.handleClick = window.open(`/${id}`, '_blank');
   }
 

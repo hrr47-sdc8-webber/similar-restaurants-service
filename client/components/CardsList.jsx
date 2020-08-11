@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/extensions
 import CardEntry from './CardEntry.jsx';
@@ -31,6 +32,12 @@ const CardsList = ({ similarRestaurants, photos, handleClick }) => {
       ))}
     </Grid>
   );
+};
+
+CardsList.propTypes = {
+  similarRestaurants: PropTypes.arrayOf(PropTypes.object).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default CardsList;

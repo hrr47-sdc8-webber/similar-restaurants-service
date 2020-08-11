@@ -4,7 +4,7 @@ const db = require('../database');
 const app = express();
 const port = 3004;
 
-app.use(express.static('public'));
+app.use('/:id', express.static('public'));
 app.use(express.json());
 
 app.get('/zagat/restaurants/:id', (req, res) => {

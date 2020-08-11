@@ -66,31 +66,30 @@ const Description = styled.div`
 //   `;
 
 const CardEntry = ({
-  id, name, price, ratingLabel, ratingScore, category, description, neighborhood, photos
-}) => {
-  return (
-    <Card>
-      <PhotosCarousel photos={photos} />
-      <CardText>
-        <Name>{name}</Name>
-        <Details>
-          <span>{category}</span>
-          <span> &#8226; </span>
-          <span>{neighborhood}</span>
-          <span> &#8226; </span>
-          <span>{price}</span>
-        </Details>
-        <div>
-          <img src="https://zigat.s3-us-west-1.amazonaws.com/z-favicon.png" alt="logo" />
-          <span> </span>
-          <RatingLabel>{ratingLabel}</RatingLabel>
-          <span> </span>
-          <RatingScore>{ratingScore}</RatingScore>
-        </div>
-        <Description>{description}</Description>
-      </CardText>
-    </Card>
-  );
-};
+  id, name, price, ratingLabel, ratingScore,
+  category, description, neighborhood, photos, handleClick,
+}) => (
+  <Card onClick={(e) => { handleClick(e, id); }}>
+    <PhotosCarousel photos={photos} />
+    <CardText>
+      <Name>{name}</Name>
+      <Details>
+        <span>{category}</span>
+        <span> &#8226; </span>
+        <span>{neighborhood}</span>
+        <span> &#8226; </span>
+        <span>{price}</span>
+      </Details>
+      <div>
+        <img src="https://zigat.s3-us-west-1.amazonaws.com/z-favicon.png" alt="logo" />
+        <span> </span>
+        <RatingLabel>{ratingLabel}</RatingLabel>
+        <span> </span>
+        <RatingScore>{ratingScore}</RatingScore>
+      </div>
+      <Description>{description}</Description>
+    </CardText>
+  </Card>
+);
 
 export default CardEntry;

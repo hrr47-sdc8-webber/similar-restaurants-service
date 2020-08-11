@@ -11,7 +11,7 @@ const Grid = styled.div`
   flex-wrap: wrap;
   `;
 
-const CardsList = ({ similarRestaurants, photos }) => {
+const CardsList = ({ similarRestaurants, photos, handleClick }) => {
   return (
     <Grid>
       {similarRestaurants.map((restaurant, index) => (
@@ -26,6 +26,7 @@ const CardsList = ({ similarRestaurants, photos }) => {
           description={restaurant.description}
           neighborhood={restaurant.neighborhood}
           photos={photos[index]}
+          handleClick={handleClick}
         />
       ))}
     </Grid>

@@ -64,6 +64,14 @@ const PhotosCarousel = ({ photos }) => {
     currentPhoto = photos[index];
   };
 
+  if (!currentPhoto) {
+    return (
+      <Carousel>
+        <Slide src='https://zigat.s3-us-west-1.amazonaws.com/no-dish.png' alt="no dish photo" />
+      </Carousel>
+    );
+  }
+
   return (
     <Carousel>
       <Slide src={currentPhoto.url} alt="restaurant photo" />

@@ -14,10 +14,9 @@ const Slide = styled.img`
   height: auto;
 `;
 
-const ButtonLeft = styled.button`
+const Button = styled.button`
   position: absolute;
   top: 32%;
-  left: 0%;
   background-color: transparent;
   color: white;
   font-size: 30px;
@@ -27,43 +26,53 @@ const ButtonLeft = styled.button`
   height: 40px;
   width: 40px;
   cursor: pointer;
+  outline: none;
 
   &:hover {
     background-color: #101820;
   }
-`;
 
-const ButtonRight = styled.button`
-  position: absolute;
-  top: 32%;
-  right: 0%;
-  background-color: transparent;
-  color: white;
-  font-size: 30px;
-  border: none;
-  border-radius: 20px;
-  text-align: center;
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
+  &.btn-left {
+    left: 0%;
+  }
 
-  &:hover {
-    background-color: #101820;
+  &.btn-right {
+    right: 0%;
   }
 `;
 
 const PhotosCarousel = ({ photos }) => {
-  const [index, setIndex] = useState(0);
+  let [index, setIndex] = useState(0);
+  let currentPhoto = photos[index];
+
+  const arrowRightClick = () => {
+    if (index !== photos.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(index = 0);
+    }
+    currentPhoto = photos[index];
+  };
+
+  const arrowLeftClick = () => {
+    if (index !== 0) {
+      setIndex(index - 1);
+    } else {
+      setIndex(index = photos.length - 1);
+    }
+
+    currentPhoto = photos[index];
+  };
 
   return (
     <Carousel>
-      <Slide src={photos[index].url} alt="restaurant photo" />
-      <ButtonLeft onClick={() => setIndex(index - 1)}>
+      <Slide src={currentPhoto.url} alt="restaurant photo" />
+      <Button className="btn-left" onClick={arrowLeftClick}>
         &lt;
-      </ButtonLeft>
-      <ButtonRight onClick={() => setIndex(index + 1)}>
+      </Button>
+      <Button className="btn-right" onClick={arrowRightClick}>
         &gt;
-      </ButtonRight>
+      </Button>
     </Carousel>
   );
 };

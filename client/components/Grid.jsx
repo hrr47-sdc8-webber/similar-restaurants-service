@@ -61,6 +61,10 @@ class Grid extends React.Component {
       currentCategory, currentName, similarRestaurants, photos,
     } = this.state;
 
+    if (similarRestaurants.length === 0) {
+      return null;
+    }
+
     return (
       <Container>
         <GridHeader

@@ -21,7 +21,6 @@ class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line no-undef
       currentId: window.location.pathname.split('/')[1],
       currentName: '',
       currentCategory: '',
@@ -38,7 +37,7 @@ class Grid extends React.Component {
   }
 
   getInfo(id) {
-    axios.get(`/zagat/restaurants/${id}`)
+    axios.get(`/api/restaurants/${id}`)
       .then((res) => {
         this.setState({
           currentName: res.data.restaurant.name,
@@ -54,7 +53,6 @@ class Grid extends React.Component {
 
   handleClick(e, id) {
     this.handleClick = e.preventDefault();
-    // eslint-disable-next-line no-undef
     this.handleClick = window.open(`/${id}`, '_blank');
   }
 
@@ -62,6 +60,10 @@ class Grid extends React.Component {
     const {
       currentCategory, currentName, similarRestaurants, photos,
     } = this.state;
+
+    if (similarRestaurants.length === 0) {
+      return null;
+    }
 
     return (
       <Container>

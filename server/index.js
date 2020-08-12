@@ -7,7 +7,7 @@ const port = 3004;
 app.use('/:id', express.static('public'));
 app.use(express.json());
 
-app.get('/zagat/restaurants/:id', (req, res) => {
+app.get('/api/restaurants/:id', (req, res) => {
   const allData = {};
   const argsTitle = [req.params.id];
   return db.getTitle(argsTitle)

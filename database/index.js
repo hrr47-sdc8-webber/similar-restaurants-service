@@ -1,15 +1,12 @@
 const mysql = require('mysql');
+const dbConfig = require('./dbconfig.js');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'zagat',
-});
+const connection = mysql.createConnection(dbConfig);
 
 connection.connect();
 
-// eslint-disable-next-line max-len
-const seedDataRestaurants = (name, price, ratingLabel, ratingScore, description, urlHandle, category, neighborhood) => {
+const seedDataRestaurants = (name, price, ratingLabel, ratingScore,
+  description, urlHandle, category, neighborhood) => {
   const query = `INSERT INTO restaurants (name, price, rating_label, rating_score, description, url_handle, category, neighborhood) VALUES ("${name}", "${price}", "${ratingLabel}", "${ratingScore}", "${description}", "${urlHandle}", "${category}", "${neighborhood}");`;
   connection.query(query, (err, success) => {
     if (err) {

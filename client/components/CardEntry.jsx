@@ -82,11 +82,11 @@ const CardEntry = ({
     <CardText onClick={(e) => { handleClick(e, id); }}>
       <Name>{name}</Name>
       <Details>
-        <span>{category}</span>
+        {category}
         <span> &#8226; </span>
-        <span>{neighborhood}</span>
+        {neighborhood}
         <span> &#8226; </span>
-        <span>{price}</span>
+        {price}
       </Details>
       <div>
         <Logo src="https://zagat.com/assets/img/z-logo-icon-red.svg" alt="logo" />

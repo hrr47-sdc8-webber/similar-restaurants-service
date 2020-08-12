@@ -49,10 +49,6 @@ class Grid extends React.Component {
       })
       .catch((err) => {
         throw err;
-      })
-      .then(() => {
-        // eslint-disable-next-line no-console
-        console.log(this.state);
       });
   }
 

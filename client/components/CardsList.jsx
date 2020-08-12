@@ -37,7 +37,7 @@ const CardsList = ({ similarRestaurants, photos, handleClick }) => {
 
 CardsList.propTypes = {
   similarRestaurants: PropTypes.arrayOf(PropTypes.object).isRequired,
-  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  photos: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 

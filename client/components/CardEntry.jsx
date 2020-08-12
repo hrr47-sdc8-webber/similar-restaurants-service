@@ -1,29 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/extensions
 import PhotosCarousel from './PhotosCarousel.jsx';
 
 const Card = styled.div`
-  background-color: rgb(250,250,250);
-  width: 720px;
-  height: 258px;
+  width: 50%;
+  min-width: 420px;
+  max-width: 897px;
+  max-height: 258px;
+  margin-bottom: 40px;
   display: flex;
   cursor: pointer;
-  `;
+`;
 
 const CardText = styled.div`
   background-color: white;
-  width: 360px;
-  height: 178px;
+  width: 50%;
+  max-height: 178px;
   padding: 20px 24px;
   float: right;
   color: #101820;
-  `;
+`;
 
 const Name = styled.div`
   letter-spacing: .086em;
   text-transform: uppercase;
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline #b70038 solid;
@@ -35,13 +39,23 @@ const Details = styled.div`
   letter-spacing: .013em;
   font-size: 15px;
   line-height: 24px;
-  `;
+`;
+
+const Logo = styled.img`
+  bottom: 1px;
+  height: 20px;
+  padding-right: 4px;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+`;
 
 const RatingLabel = styled.span`
   letter-spacing: .061em;
   text-transform: uppercase;
   font-size: 14px;
   line-height: 20px;
+  font-weight: 500;
 `;
 
 const RatingScore = styled.span`
@@ -59,38 +73,44 @@ const Description = styled.div`
   letter-spacing: .013em;
 `;
 
-// const CardImg = styled.div`
-//   width: 272px;
-//   height: 218px;
-//   float: left;
-//   `;
-
 const CardEntry = ({
-  id, name, price, ratingLabel, ratingScore, category, description, neighborhood, photos
-}) => {
-  return (
-    <Card>
-      <PhotosCarousel photos={photos} />
-      <CardText>
-        <Name>{name}</Name>
-        <Details>
-          <span>{category}</span>
-          <span> &#8226; </span>
-          <span>{neighborhood}</span>
-          <span> &#8226; </span>
-          <span>{price}</span>
-        </Details>
-        <div>
-          <img src="https://zigat.s3-us-west-1.amazonaws.com/z-favicon.png" alt="logo" />
-          <span> </span>
-          <RatingLabel>{ratingLabel}</RatingLabel>
-          <span> </span>
-          <RatingScore>{ratingScore}</RatingScore>
-        </div>
-        <Description>{description}</Description>
-      </CardText>
-    </Card>
-  );
+  id, name, price, ratingLabel, ratingScore,
+  category, description, neighborhood, photos, handleClick,
+}) => (
+  <Card>
+    <PhotosCarousel photos={photos} />
+    <CardText onClick={(e) => { handleClick(e, id); }}>
+      <Name>{name}</Name>
+      <Details>
+        {category}
+        <span> &#8226; </span>
+        {neighborhood}
+        <span> &#8226; </span>
+        {price}
+      </Details>
+      <div>
+        <Logo src="https://zagat.com/assets/img/z-logo-icon-red.svg" alt="logo" />
+        <span> </span>
+        <RatingLabel>{ratingLabel}</RatingLabel>
+        <span> </span>
+        <RatingScore>{ratingScore}</RatingScore>
+      </div>
+      <Description>{description}</Description>
+    </CardText>
+  </Card>
+);
+
+CardEntry.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  ratingLabel: PropTypes.string.isRequired,
+  ratingScore: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  neighborhood: PropTypes.string.isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default CardEntry;

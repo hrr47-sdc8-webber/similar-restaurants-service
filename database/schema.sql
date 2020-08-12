@@ -6,10 +6,10 @@ USE zagat;
 
 CREATE TABLE restaurants (
   rid int AUTO_INCREMENT,
-  name varchar(50) UNIQUE,
+  name varchar(50),
   price varchar(5),
   rating_label varchar(10),
-  rating_score varchar(5),
+  rating_score varchar(3),
   description varchar(100),
   url_handle varchar(100) UNIQUE,
   category varchar(20),

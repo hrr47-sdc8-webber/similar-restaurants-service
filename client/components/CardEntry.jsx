@@ -6,25 +6,28 @@ import PropTypes from 'prop-types';
 import PhotosCarousel from './PhotosCarousel.jsx';
 
 const Card = styled.div`
-  background-color: rgb(250,250,250);
-  width: 720px;
-  height: 258px;
+  width: 50%;
+  min-width: 420px;
+  max-width: 897px;
+  max-height: 258px;
+  margin-bottom: 40px;
   display: flex;
   cursor: pointer;
-  `;
+`;
 
 const CardText = styled.div`
   background-color: white;
-  width: 360px;
-  height: 178px;
+  width: 50%;
+  max-height: 178px;
   padding: 20px 24px;
   float: right;
   color: #101820;
-  `;
+`;
 
 const Name = styled.div`
   letter-spacing: .086em;
   text-transform: uppercase;
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline #b70038 solid;
@@ -36,13 +39,23 @@ const Details = styled.div`
   letter-spacing: .013em;
   font-size: 15px;
   line-height: 24px;
-  `;
+`;
+
+const Logo = styled.img`
+  bottom: 1px;
+  height: 20px;
+  padding-right: 4px;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+`;
 
 const RatingLabel = styled.span`
   letter-spacing: .061em;
   text-transform: uppercase;
   font-size: 14px;
   line-height: 20px;
+  font-weight: 500;
 `;
 
 const RatingScore = styled.span`
@@ -76,7 +89,7 @@ const CardEntry = ({
         <span>{price}</span>
       </Details>
       <div>
-        <img src="" alt="logo" />
+        <Logo src="https://zagat.com/assets/img/z-logo-icon-red.svg" alt="logo" />
         <span> </span>
         <RatingLabel>{ratingLabel}</RatingLabel>
         <span> </span>

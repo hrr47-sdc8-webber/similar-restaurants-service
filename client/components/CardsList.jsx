@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line import/extensions
 import CardEntry from './CardEntry.jsx';
 
-const Grid = styled.div`
-  width: 1440px;
-  height: 774px;
+const GridStructure = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  max-height: 774px;
   display: flex;
   flex-wrap: wrap;
-  `;
+`;
 
 const CardsList = ({ similarRestaurants, photos, handleClick }) => {
   return (
-    <Grid>
+    <GridStructure>
       {similarRestaurants.map((restaurant, index) => (
         <CardEntry
           key={restaurant.rid}
@@ -30,7 +31,7 @@ const CardsList = ({ similarRestaurants, photos, handleClick }) => {
           handleClick={handleClick}
         />
       ))}
-    </Grid>
+    </GridStructure>
   );
 };
 

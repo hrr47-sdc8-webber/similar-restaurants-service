@@ -5,7 +5,7 @@ import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import CardEntry from '../client/components/CardEntry';
-import photosMocks from './__mocks__/photos.mock.js';
+import photosMocks from './../__mocks__/photos.mock.js';
 
 configure({ adapter: new Adapter() });
 
@@ -28,8 +28,8 @@ describe('CardEntry', () => {
   });
 
   it('renders component correctly', () => {
-    const list = mount(<CardEntry {...cardEntryProps} />);
-    expect(list.exists('div')).toEqual(true);
+    const entry = mount(<CardEntry {...cardEntryProps} />);
+    expect(entry.exists('div')).toEqual(true);
   });
 
   it('CardEntry renders snapshot correctly', () => {

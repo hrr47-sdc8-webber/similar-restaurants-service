@@ -5,8 +5,8 @@ import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import CardsList from '../client/components/CardsList';
-import similarMocks from './__mocks__/similar.mock.js';
-import photosMocks from './__mocks__/photos.mock.js';
+import similarMocks from './../__mocks__/similar.mock.js';
+import photosMocks from './../__mocks__/photos.mock.js';
 
 configure({ adapter: new Adapter() });
 

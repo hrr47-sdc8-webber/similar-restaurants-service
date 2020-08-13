@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { shallow, configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import GridHeader from '../client/components/GridHeader';
@@ -19,7 +19,7 @@ describe('GridHeader', () => {
   });
 
   it('renders text correctly', () => {
-    const title = shallow(<GridHeader {...gridHeaderProps} />);
+    const title = mount(<GridHeader {...gridHeaderProps} />);
     expect(title.find('div').text()).toEqual('More Pizza Near Rubie ivory consequatur');
   });
 

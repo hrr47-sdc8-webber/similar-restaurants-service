@@ -4,7 +4,18 @@ import renderer from 'react-test-renderer';
 import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { CardEntry, CardText } from '../client/components/CardEntry';
+import {
+  CardEntry,
+  Card,
+  PhotosCarousel,
+  CardText,
+  Name,
+  Details,
+  Logo,
+  RatingLabel,
+  RatingScore,
+  Description,
+} from '../client/components/CardEntry';
 import photosMocks from './../__mocks__/photos.mock.js';
 
 configure({ adapter: new Adapter() });
@@ -36,6 +47,19 @@ describe('CardEntry', () => {
     const component = renderer.create(<CardEntry {...cardEntryProps} />);
     const json = component.toJSON();
     expect(json).toMatchSnapshot();
+  });
+
+  it('renders nested components', () => {
+    const entry = mount(<CardEntry {...cardEntryProps} />);
+    expect(entry.find(Card).length).toEqual(1);
+    expect(entry.find(PhotosCarousel).length).toEqual(1);
+    expect(entry.find(CardText).length).toEqual(1);
+    expect(entry.find(Name).length).toEqual(1);
+    expect(entry.find(Details).length).toEqual(1);
+    expect(entry.find(Logo).length).toEqual(1);
+    expect(entry.find(RatingLabel).length).toEqual(1);
+    expect(entry.find(RatingScore).length).toEqual(1);
+    expect(entry.find(Description).length).toEqual(1);
   });
 });
 

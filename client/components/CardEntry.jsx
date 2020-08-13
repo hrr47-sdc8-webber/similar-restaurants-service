@@ -79,7 +79,7 @@ const CardEntry = ({
 }) => (
   <Card>
     <PhotosCarousel photos={photos} />
-    <CardText className="textLink" onClick={(e) => { handleClick(e, id); }}>
+    <CardText onClick={(e) => { handleClick(e, id); }}>
       <Name>{name}</Name>
       <Details>
         {category}
@@ -115,5 +115,13 @@ CardEntry.propTypes = {
 
 export {
   CardEntry,
+  Card,
+  PhotosCarousel,
   CardText,
+  Name,
+  Details,
+  Logo,
+  RatingLabel,
+  RatingScore,
+  Description,
 };

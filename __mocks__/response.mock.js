@@ -9,7 +9,7 @@ response.data = {
   },
   similar: [
     {
-      rid: 113,,
+      rid: 113,
       name: 'America mint green in',
       price: '$',
       rating_label: 'Service',

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/extensions
-import CardEntry from './CardEntry.jsx';
+import { CardEntry } from './CardEntry.jsx';
 
 const GridStructure = styled.div`
   width: 100%;

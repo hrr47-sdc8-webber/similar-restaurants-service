@@ -72,6 +72,14 @@ const PhotosCarousel = ({ photos }) => {
     );
   }
 
+  if (photos.length === 1) {
+    return (
+      <Carousel>
+        <Slide src={currentPhoto.url} alt="restaurant photo" />
+      </Carousel>
+    );
+  }
+
   return (
     <Carousel>
       <Slide src={currentPhoto.url} alt="restaurant photo" />

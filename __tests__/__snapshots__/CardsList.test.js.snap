@@ -29,7 +29,7 @@ exports[`CardsList CardsList renders snapshot correctly 1`] = `
       </button>
     </div>
     <div
-      className="CardEntry__CardText-sc-16qxg8l-1 cyGUed"
+      className="CardEntry__CardText-sc-16qxg8l-1 cyGUed textLink"
       onClick={[Function]}
     >
       <div
@@ -91,21 +91,9 @@ exports[`CardsList CardsList renders snapshot correctly 1`] = `
         className="PhotosCarousel__Slide-sc-158497q-1 koTQkm"
         src="https://zigat.s3-us-west-1.amazonaws.com/image19.jpg"
       />
-      <button
-        className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-left"
-        onClick={[Function]}
-      >
-        &lt;
-      </button>
-      <button
-        className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-right"
-        onClick={[Function]}
-      >
-        &gt;
-      </button>
     </div>
     <div
-      className="CardEntry__CardText-sc-16qxg8l-1 cyGUed"
+      className="CardEntry__CardText-sc-16qxg8l-1 cyGUed textLink"
       onClick={[Function]}
     >
       <div

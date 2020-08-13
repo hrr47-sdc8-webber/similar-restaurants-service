@@ -32,7 +32,7 @@ describe('PhotosCarousel with photos data', () => {
 
 describe('PhotosCarousel without photos data', () => {
   it('renders main component correctly', () => {
-    const carousel = mount(<PhotosCarousel photos={[{ url: 'https://zigat.s3-us-west-1.amazonaws.com/no-dish.png' }]} />);
+    const carousel = mount(<PhotosCarousel photos={[]} />);
     expect(carousel.exists('div')).toEqual(true);
   });
 });

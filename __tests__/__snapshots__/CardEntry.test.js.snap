@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardEntry CardEntry renders snapshot correctly 1`] = `
+exports[`CardEntry renders snapshot correctly 1`] = `
 <div
   className="CardEntry__Card-sc-16qxg8l-0 ijlrHX"
 >
@@ -26,7 +26,7 @@ exports[`CardEntry CardEntry renders snapshot correctly 1`] = `
     </button>
   </div>
   <div
-    className="CardEntry__CardText-sc-16qxg8l-1 cyGUed"
+    className="CardEntry__CardText-sc-16qxg8l-1 cyGUed textLink"
     onClick={[Function]}
   >
     <div

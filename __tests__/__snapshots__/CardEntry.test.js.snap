@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardEntry CardEntry renders snapshot correctly 1`] = `
+<div
+  className="CardEntry__Card-sc-16qxg8l-0 ijlrHX"
+>
+  <div
+    className="PhotosCarousel__Carousel-sc-158497q-0 gfVLiU"
+  >
+    <img
+      alt="restaurant photo"
+      className="PhotosCarousel__Slide-sc-158497q-1 koTQkm"
+      src="https://zigat.s3-us-west-1.amazonaws.com/image8.jpg"
+    />
+    <button
+      className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-left"
+      onClick={[Function]}
+    >
+      &lt;
+    </button>
+    <button
+      className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-right"
+      onClick={[Function]}
+    >
+      &gt;
+    </button>
+  </div>
+  <div
+    className="CardEntry__CardText-sc-16qxg8l-1 cyGUed"
+    onClick={[Function]}
+  >
+    <div
+      className="CardEntry__Name-sc-16qxg8l-2 jllmQB"
+    >
+      America mint green in
+    </div>
+    <div
+      className="CardEntry__Details-sc-16qxg8l-3 fOzwpo"
+    >
+      Japanese
+      <span>
+         • 
+      </span>
+      Castro
+      <span>
+         • 
+      </span>
+      $
+    </div>
+    <div>
+      <img
+        alt="logo"
+        className="CardEntry__Logo-sc-16qxg8l-4 hokyPJ"
+        src="https://zagat.com/assets/img/z-logo-icon-red.svg"
+      />
+      <span>
+         
+      </span>
+      <span
+        className="CardEntry__RatingLabel-sc-16qxg8l-5 cfzkWI"
+      >
+        Service
+      </span>
+      <span>
+         
+      </span>
+      <span
+        className="CardEntry__RatingScore-sc-16qxg8l-6 iWmVHa"
+      >
+        4.0
+      </span>
+    </div>
+    <div
+      className="CardEntry__Description-sc-16qxg8l-7 fEyeQh"
+    >
+      Enim non voluptas vel non vel eaque aspernatur.
+    </div>
+  </div>
+</div>
+`;

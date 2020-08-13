@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotosCarousel with photos data PhotosCarousel renders snapshot correctly 1`] = `
+<div
+  className="PhotosCarousel__Carousel-sc-158497q-0 gfVLiU"
+>
+  <img
+    alt="restaurant photo"
+    className="PhotosCarousel__Slide-sc-158497q-1 koTQkm"
+    src="https://zigat.s3-us-west-1.amazonaws.com/image8.jpg"
+  />
+  <button
+    className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-left"
+    onClick={[Function]}
+  >
+    &lt;
+  </button>
+  <button
+    className="PhotosCarousel__Button-sc-158497q-2 cMeYdq btn-right"
+    onClick={[Function]}
+  >
+    &gt;
+  </button>
+</div>
+`;

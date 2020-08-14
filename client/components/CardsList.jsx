@@ -7,8 +7,6 @@ import { CardEntry } from './CardEntry.jsx';
 
 const GridStructure = styled.div`
   width: 100%;
-  max-width: 1440px;
-  max-height: 774px;
   display: flex;
   flex-wrap: wrap;
 `;

@@ -7,11 +7,12 @@ const Carousel = styled.div`
   position: relative;
   width: 100%;
   max-width: 272px;
+  background-color: white;
 `;
 
 const Slide = styled.img`
   width: 100%;
-  height: auto;
+  min-height: 215px;
 `;
 
 const Button = styled.button`

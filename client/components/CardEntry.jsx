@@ -6,19 +6,18 @@ import PropTypes from 'prop-types';
 import PhotosCarousel from './PhotosCarousel.jsx';
 
 const Card = styled.div`
-  width: 50%;
+  width: 40%;
   min-width: 420px;
-  max-width: 897px;
-  max-height: 258px;
   margin-bottom: 40px;
+  margin-right: 40px;
   display: flex;
   cursor: pointer;
 `;
 
 const CardText = styled.div`
   background-color: white;
-  width: 50%;
-  max-height: 178px;
+  width: 60%;
+  max-height: 175px;
   padding: 20px 24px;
   float: right;
   color: #101820;

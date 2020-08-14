@@ -1,18 +1,21 @@
 {
-  "name": "zagat-similar-restaurants-grid-module",
+  "name": "similar-restaurants-grid-module",
   "version": "1.0.0",
-  "description": "This module shows similar restaurant to the one displayed on a page by category and neighborhood.",
+  "description": "This module shows similar restaurants to the one displayed on a page by category and neighborhood.",
   "main": "server/index.js",
   "author": "Cinzia Borello",
   "license": "ISC",
+  "homepage": "https://github.com/FEC-7-Stevens/similar-restaurants-service#readme",
+
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
     "test": "jest",
-    "build": "webpack --config webpack.config.js",
-    "start": "nodemon server/index.js",
-    "client": "webpack -d --watch",
+    "start": "node ./server/index.js",
+    "start:dev": "nodemon server/index.js",
+    "build": "webpack -p",
+    "build:dev": "webpack -d --watch",
     "schema": "mysql -u root < database/schema.sql",
     "seed": "node seed.js"
   },

@@ -23,7 +23,7 @@ let pId = 1;
 while (pId <= 3501) {
   const imageId = Math.floor(Math.random() * (80 - 1) + 1);
   const url = `https://zigat.s3-us-west-1.amazonaws.com/image${imageId}.jpg`;
-  const restaurantId = Math.floor(Math.random() * (601 - 1) + 1);
+  const restaurantId = Math.floor(Math.random() * (691 - 1) + 1);
   db.seedDataPhotos(url, restaurantId);
   pId += 1;
 }

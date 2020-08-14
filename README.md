@@ -1,5 +1,5 @@
 # Zigat.com similar restaurants module
-> This module shows similar restaurants to the one displayed on a page by category and neighborhood.
+> This module shows similar restaurants to the one displayed on a page by category and neighborhood. It's rendered at the bottom of the page above the footer.
 
 ## Related Projects
   - https://github.com/FEC-7-Stevens/photo-carousel-service
@@ -60,22 +60,23 @@ npm test
 
 ## Screenshots
 
-### Similar restaurants full grid of six
+### Full grid of six
 Example: http://localhost:3004/2/
 
 ![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")
 
-### Similar restaurants grid of four
+### Grid of four
 Example: http://localhost:3004/16/
 
 ![Alt ](/screenshots/similar-grid-4.png?raw=true "Similar restaurants grid of four")
 
-### Similar restaurants grid of two
+### Grid of two
 Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-grid-2.png?raw=true "Similar restaurants grid of two")
 
 ### One restaurant has no photos
+A placeholder image is rendered.
 Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-with-exception.png?raw=true "One restaurant has no photos")

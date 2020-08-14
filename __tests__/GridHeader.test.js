@@ -1,29 +1,31 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import GridHeader from '../client/components/GridHeader';
 
 configure({ adapter: new Adapter() });
 
-// describe('GridHeader (Snapshot)', () => {
-//   it('GridHeader renders "More Pizza Near Rubie ivory consequatur"', () => {
-//     const component = renderer.create(<GridHeader />);
-//     const json = component.toJSON();
-//     expect(json).toMatchSnapshot();
-//   });
-// });
+describe('GridHeader', () => {
+  const gridHeaderProps = {
+    currentCategory: 'Pizza',
+    currentName: 'Rubie ivory consequatur',
+  };
 
-describe('GridHeader rendering', () => {
   it('renders without crashing', () => {
-    shallow(<GridHeader />);
+    shallow(<GridHeader {...gridHeaderProps} />);
   });
 
-  it('GridHeader renders pre-written text correctly', () => {
-    const welcome = shallow(<GridHeader />);
-    expect(welcome.find('div').text()).toEqual('More  Near ');
+  it('renders text correctly', () => {
+    const title = mount(<GridHeader {...gridHeaderProps} />);
+    expect(title.find('div').text()).toEqual('More Pizza Near Rubie ivory consequatur');
+  });
+
+  it('GridHeader renders "More Pizza Near Rubie ivory consequatur"', () => {
+    const component = renderer.create(<GridHeader {...gridHeaderProps} />);
+    const json = component.toJSON();
+    expect(json).toMatchSnapshot();
   });
 });

@@ -67,7 +67,15 @@ const PhotosCarousel = ({ photos }) => {
   if (!currentPhoto) {
     return (
       <Carousel>
-        <Slide src='https://zigat.s3-us-west-1.amazonaws.com/no-dish.png' alt="no dish photo" />
+        <Slide src="https://zigat.s3-us-west-1.amazonaws.com/no-dish.png" alt="no dish photo" />
+      </Carousel>
+    );
+  }
+
+  if (photos.length === 1) {
+    return (
+      <Carousel>
+        <Slide src={currentPhoto.url} alt="restaurant photo" />
       </Carousel>
     );
   }

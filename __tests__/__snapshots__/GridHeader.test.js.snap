@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridHeader GridHeader renders "More Pizza Near Rubie ivory consequatur" 1`] = `
+<div
+  className="GridHeader__Title-sc-107enjf-0 kiVOvW"
+>
+  More 
+  Pizza
+   Near 
+  Rubie ivory consequatur
+</div>
+`;

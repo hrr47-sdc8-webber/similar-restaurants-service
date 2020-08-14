@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Title = styled.span`
+const Title = styled.div`
   width: 100%;
   max-width: 1408px;
   max-height: 32px;
@@ -17,14 +17,12 @@ const Title = styled.span`
 `;
 
 const GridHeader = ({ currentCategory, currentName }) => (
-  <div>
-    <Title>
-      {'More '}
-      {currentCategory}
-      {' Near '}
-      {currentName}
-    </Title>
-  </div>
+  <Title>
+    {'More '}
+    {currentCategory}
+    {' Near '}
+    {currentName}
+  </Title>
 );
 
 GridHeader.propTypes = {

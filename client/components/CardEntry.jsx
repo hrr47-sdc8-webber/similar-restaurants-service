@@ -113,4 +113,15 @@ CardEntry.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
-export default CardEntry;
+export {
+  CardEntry,
+  Card,
+  PhotosCarousel,
+  CardText,
+  Name,
+  Details,
+  Logo,
+  RatingLabel,
+  RatingScore,
+  Description,
+};

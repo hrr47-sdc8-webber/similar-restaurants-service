@@ -75,7 +75,7 @@ Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-grid-2.png?raw=true "Similar restaurants grid of two")
 
-#### One restaurant has no photos
+### One restaurant has no photos
 Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-with-exception.png?raw=true "One restaurant has no photos")

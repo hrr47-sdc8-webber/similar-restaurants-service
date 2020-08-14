@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const Title = styled.span`
   width: 100%;
-  max-width: 1408px;
   max-height: 32px;
   margin-bottom: 25px;
   margin-right: 32px;

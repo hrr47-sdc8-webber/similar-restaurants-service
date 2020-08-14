@@ -14,7 +14,8 @@
 
 ## Usage
 > Example URL: http://localhost:3004/85/
-> To initialize the page, in two separate terminal windows:
+
+To initialize the page, in two separate terminal windows:
 
 ```sh
 npm start
@@ -56,3 +57,4 @@ npm test
 ```
 
 ## Screenshots
+![Alt similar restaurants full grid](/screenshots/similar-restaurants-full-grid.png?raw=true "Similar restaurants full grid")

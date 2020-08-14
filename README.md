@@ -13,7 +13,7 @@
 4. [Screenshots](#Screenshots)
 
 ## Usage
-> Example URL: http://localhost:3004/85/
+> Example URL: http://localhost:3004/2/
 
 To initialize the page, in two separate terminal windows:
 
@@ -21,6 +21,8 @@ To initialize the page, in two separate terminal windows:
 npm start
 npm run build
 ```
+
+If there are no similar restaurants the module doesn't render. Example: http://localhost:3004/73/
 
 ## Requirements
 - Node v12.18.1
@@ -57,4 +59,23 @@ npm test
 ```
 
 ## Screenshots
-![Alt similar restaurants full grid](/screenshots/similar-restaurants-full-grid.png?raw=true "Similar restaurants full grid")
+
+### Similar restaurants full grid of six
+Example: http://localhost:3004/2/
+
+![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")
+
+### Similar restaurants grid of four
+Example: http://localhost:3004/16/
+
+![Alt ](/screenshots/similar-grid-4.png?raw=true "Similar restaurants grid of four")
+
+### Similar restaurants grid of two
+Example: http://localhost:3004/4/
+
+![Alt ](/screenshots/similar-grid-2.png?raw=true "Similar restaurants grid of two")
+
+#### One restaurant has no photos
+Example: http://localhost:3004/4/
+
+![Alt ](/screenshots/similar-with-exception.png?raw=true "One restaurant has no photos")

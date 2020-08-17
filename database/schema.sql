@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS zagat;
+DROP DATABASE IF EXISTS zagatSimilarRestaurants;
 
-CREATE DATABASE zagat;
+CREATE DATABASE zagatSimilarRestaurants;
 
-USE zagat;
+USE zagatSimilarRestaurants;
 
 CREATE TABLE restaurants (
   rid int AUTO_INCREMENT,

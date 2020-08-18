@@ -38,7 +38,7 @@ app.get('/restaurants/:id', (req, res) => {
       res.status(200).send(allData);
     })
     .catch(() => {
-      res.status(404).send('error in getting the restaurants data');
+      res.status(500).send('error in getting the data from the db');
     });
 });
 

@@ -22,7 +22,7 @@ npm start
 npm run build
 ```
 
-If there are no similar restaurants the module doesn't render. Example: http://localhost:3004/73/
+If there are no similar restaurants the module doesn't render.
 
 ## Requirements
 - Node v12.18.1
@@ -61,22 +61,18 @@ npm test
 ## Screenshots
 
 ### Full grid of six
-Example: http://localhost:3004/2/
 
 ![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")
 
 ### Grid of four
-Example: http://localhost:3004/16/
 
 ![Alt ](/screenshots/similar-grid-4.png?raw=true "Similar restaurants grid of four")
 
 ### Grid of two
-Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-grid-2.png?raw=true "Similar restaurants grid of two")
 
 ### One restaurant has no photos
 A placeholder image is rendered.
-Example: http://localhost:3004/4/
 
 ![Alt ](/screenshots/similar-with-exception.png?raw=true "One restaurant has no photos")

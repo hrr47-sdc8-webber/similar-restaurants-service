@@ -7,9 +7,12 @@ import CardsList from './CardsList.jsx';
 // eslint-disable-next-line import/extensions
 import GridHeader from './GridHeader.jsx';
 
+const host = 'http://localhost:3004';
+
 const Container = styled.div`
   background-color: rgb(250,250,250);
-  width: 100%;
+  width: 97%;
+  margin-left: 2%;
   margin-top: 48px;
   color: #101820;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -35,7 +38,7 @@ class Grid extends React.Component {
   }
 
   getInfo(id) {
-    axios.get(`/api/restaurants/${id}`)
+    axios.get(`${host}/restaurants/${id}`)
       .then((res) => {
         this.setState({
           currentName: res.data.restaurant.name,

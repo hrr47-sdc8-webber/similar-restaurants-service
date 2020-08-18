@@ -6,7 +6,6 @@
   "author": "Cinzia Borello",
   "license": "ISC",
   "homepage": "https://github.com/FEC-7-Stevens/similar-restaurants-service#readme",
-
   "engines": {
     "node": ">=6.13.0"
   },
@@ -21,6 +20,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mysql": "^2.18.1",

@@ -1,13 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('../database');
 
 const app = express();
 const port = 3004;
 
 app.use('/:id', express.static('public'));
+app.use(cors());
 app.use(express.json());
 
-app.get('/api/restaurants/:id', (req, res) => {
+app.get('/restaurants/:id', (req, res) => {
   const allData = {};
   const argsTitle = [req.params.id];
   return db.getTitle(argsTitle)

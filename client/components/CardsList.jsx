@@ -13,6 +13,9 @@ const GridStructure = styled.div`
 `;
 
 const CardsList = ({ similarRestaurants, photos, handleClick }) => {
+  if (similarRestaurants.length % 2 !== 0) {
+    similarRestaurants.pop();
+  }
   return (
     <GridStructure>
       {similarRestaurants.map((restaurant, index) => (

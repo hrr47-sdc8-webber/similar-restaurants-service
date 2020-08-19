@@ -11,8 +11,7 @@ const host = 'http://localhost:3004';
 
 const Container = styled.div`
   background-color: rgb(250,250,250);
-  width: 97%;
-  margin-left: 2%;
+  width: 100%;
   margin-top: 48px;
   color: #101820;
   font-family: Roboto, "Helvetica Neue", sans-serif;

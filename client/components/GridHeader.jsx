@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Title = styled.div`
-  width: 100%;
+  width: 91%;
   max-height: 32px;
   margin-bottom: 25px;
   margin-right: 32px;
+  margin-left: auto;
   display: block;
   padding-top: 6px;
   border-top: 1px solid black;

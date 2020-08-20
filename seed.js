@@ -27,3 +27,5 @@ while (pId <= 3501) {
   db.seedDataPhotos(url, restaurantId);
   pId += 1;
 }
+
+db.updateOne();

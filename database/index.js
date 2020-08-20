@@ -32,6 +32,20 @@ const seedDataPhotos = (url, restaurantId) => {
   });
 };
 
+// Update one record to have consistency across all our services
+const updateOne = () => {
+  const query = `UPDATE restaurants SET name = "Stevens' Kitchen", category = "Greek", neighborhood = "Financial District" WHERE rid = 1;`;
+  connection.query(query, (err, success) => {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log(success);
+    }
+  });
+}
+
 // Given a restaurant id, populate name, category, and neighborhood in title.
 const getTitle = (args) => {
   const query = 'SELECT name, category, neighborhood FROM restaurants WHERE rid = ?;';
@@ -76,6 +90,7 @@ module.exports = {
   connection,
   seedDataRestaurants,
   seedDataPhotos,
+  updateOne,
   getTitle,
   getSimilar,
   getPhotos,

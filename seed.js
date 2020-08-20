@@ -12,8 +12,8 @@ while (rId <= 701) {
   const ratingScore = (Math.random() * (5.0 - 3.8) + 3.8).toFixed(1);
   const description = faker.lorem.sentence();
   const urlHandle = faker.helpers.slugify(name);
-  const category = faker.helpers.randomize(['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan']);
-  const neighborhood = faker.helpers.randomize(['Mission', 'Haight Ashbury', 'Hayes Valley', 'Castro', 'North Beach', 'Financial District', 'Marina', 'Fillmore', 'Pacific Heights', 'Noe Valley']);
+  const category = faker.helpers.randomize(['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Greek', 'Vegetarian', 'Vegan']);
+  const neighborhood = faker.helpers.randomize(['Mission', 'Haight Ashbury', 'Hayes Valley', 'Castro', 'North Beach', 'Financial District', 'Financial District', 'Marina', 'Fillmore', 'Pacific Heights', 'Noe Valley']);
   db.seedDataRestaurants(name, price, ratingLabel, ratingScore,
     description, urlHandle, category, neighborhood);
   rId += 1;

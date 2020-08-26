@@ -59,6 +59,11 @@ app.post('/restaurants/:id/images', (req, res) => {
 //PUT request: update an existing restaurant based on body of request
 
 //DELETE: delete a restaurant (and all associated photos)
+app.delete('/restaurants/:id', (req, res) => {
+  db.deleteRestaurant(req.params.id)
+    .then(() => res.status(200).send('Successfully deleted'))
+    .catch(() => res.status(500).send('Unable to delete'));
+});
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

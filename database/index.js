@@ -117,8 +117,19 @@ const addPhoto = (obj) => {
          reject(err.message);
        }
        resolve(data);
-     })
-   })
+     });
+   });
+}
+
+const deleteRestaurant = (id) => {
+  return new Promise ((resolve, reject) => {
+    connection.query('DELETE FROM restaurants WHERE rid = ?', [id], (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
 }
 
 module.exports = {
@@ -131,4 +142,5 @@ module.exports = {
   getPhotos,
   addRestaurant,
   addPhoto,
+  deleteRestaurant,
 };

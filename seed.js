@@ -21,8 +21,8 @@ while (rId <= 701) {
 
 let pId = 1;
 while (pId <= 3501) {
-  const imageId = Math.floor(Math.random() * (80 - 1) + 1);
-  const url = `https://zigat.s3-us-west-1.amazonaws.com/image${imageId}.jpg`;
+  const imageId = Math.floor(Math.random() * 500 + 1);
+  const url = `https://sdc-similar-restaurants.s3-us-west-2.amazonaws.com/${imageId}.jpg`;
   const restaurantId = Math.floor(Math.random() * (691 - 1) + 1);
   db.seedDataPhotos(url, restaurantId);
   pId += 1;

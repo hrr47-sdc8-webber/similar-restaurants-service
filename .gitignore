@@ -24,3 +24,6 @@ __coverage__/
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
+
+# Files
+dbconfig.js

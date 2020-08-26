@@ -87,12 +87,8 @@ const getPhotos = (args) => {
 };
 
 const addRestaurant = (obj) => {
-  const keys = [];
-  const values = [];
-  for (let category in obj) {
-    keys.push(category);
-    values.push(obj[category]);
-  }
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO restaurants (${keys[0]}, ${keys[1]}, ${keys[2]}, ${keys[3]}, ${keys[4]}, ${keys[5]}, ${keys[6]}, ${keys[7]}) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, values, (err, data) => {
       if (err) {
@@ -101,42 +97,34 @@ const addRestaurant = (obj) => {
       resolve(data);
     });
   });
-}
+};
 
 const addPhoto = (obj) => {
-   const keys = [];
-   const values = [];
-   for (let category in obj) {
-     keys.push(category);
-     values.push(obj[category]);
-   }
-   console.log(keys, values);
-   return new Promise((resolve, reject) => {
-     connection.query(`INSERT INTO photos (${keys[0]}, ${keys[1]}) VALUES (?, ?)`, values, (err, data) => {
-       if (err) {
-         reject(err.message);
-       }
-       resolve(data);
-     });
-   });
-}
-
-const deleteRestaurant = (id) => {
-  console.log(id);
-  return new Promise ((resolve, reject) => {
-    connection.query(`DELETE FROM restaurants WHERE rid = ${id}`, (err, data) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  return new Promise((resolve, reject) => {
+    connection.query(`INSERT INTO photos (${keys[0]}, ${keys[1]}) VALUES (?, ?)`, values, (err, data) => {
       if (err) {
-        console.log(err.message);
         reject(err.message);
       }
       resolve(data);
     });
   });
-}
+};
+
+const deleteRestaurant = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`DELETE FROM restaurants WHERE rid = ${id}`, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
 
 const deletePhotos = (id) => {
-  console.log(id);
-  return new Promise ((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     connection.query('DELETE FROM photos WHERE restaurant_id = ?', [id], (err, data) => {
       if (err) {
         reject(err.message);
@@ -144,7 +132,25 @@ const deletePhotos = (id) => {
       resolve(data);
     });
   });
-}
+};
+
+const updateRestaurant = (obj, id) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  let query = '';
+  for (let i = 0; i < keys.length; i++) {
+    if (query !== '') { query += ', '; }
+    query += `${keys[i]} = '${values[i]}'`;
+  }
+  return new Promise((resolve, reject) => {
+    connection.query(`UPDATE restaurants SET ${query} WHERE rid = ${id}`, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
 
 module.exports = {
   connection,
@@ -158,4 +164,5 @@ module.exports = {
   addPhoto,
   deleteRestaurant,
   deletePhotos,
+  updateRestaurant,
 };

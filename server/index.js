@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const db = require('../database');
 
 const app = express();
@@ -7,7 +8,8 @@ const port = 3004;
 
 app.use('/:id', express.static('public'));
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/restaurants/:id', (req, res) => {
   const allData = {};
@@ -42,23 +44,28 @@ app.get('/restaurants/:id', (req, res) => {
     });
 });
 
-//POST request: add a new restaurant
+//  POST request: add a new restaurant
 app.post('/restaurants', (req, res) => {
   db.addRestaurant(req.body)
-    .then(() => res.status(200).send('Posted!'))
+    .then(() => res.status(200).send('Sucessfully posted new restaurant'))
     .catch(() => res.status(500).send('Unable to post'));
 });
 
-//POST request: add new images to an existing restaurant.
+//  POST request: add new images to an existing restaurant.
 app.post('/restaurants/:id/images', (req, res) => {
-  db.addPhoto({ restaurant_id: req.params.id, url: req.body.url})
-    .then(() => res.status(200).send('Posted!'))
+  db.addPhoto({ restaurant_id: req.params.id, url: req.body.url })
+    .then(() => res.status(200).send('Successfully posted photo'))
     .catch(() => res.status(500).send('Unable to post'));
 });
 
-//PUT request: update an existing restaurant based on body of request
+//  PUT request: update an existing restaurant based on body of request
+app.put('/restaurants/:id', (req, res) => {
+  db.updateRestaurant(req.body, req.params.id)
+    .then(() => res.status(200).send('Successfully updated restaurant'))
+    .catch(() => res.status(500).send('Failed to update'));
+});
 
-//DELETE: delete a restaurant (and all associated photos)
+//  DELETE: delete a restaurant (and all associated photos)
 app.delete('/restaurants/:id', (req, res) => {
   db.deletePhotos(req.params.id)
     .then(() => {

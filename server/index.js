@@ -50,9 +50,11 @@ app.post('/restaurants', (req, res) => {
 });
 
 //POST request: add new images to an existing restaurant.
-app.post('/restaurants/:id', (req, res) => {
-  console.log(req.params, req.body)
-})
+app.post('/restaurants/:id/images', (req, res) => {
+  db.addPhoto({ restaurant_id: req.params.id, url: req.body.url})
+    .then(() => res.status(200).send('Posted!'))
+    .catch(() => res.status(500).send('Unable to post'));
+});
 
 //PUT request: update an existing restaurant based on body of request
 

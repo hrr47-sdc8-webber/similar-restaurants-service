@@ -96,12 +96,29 @@ const addRestaurant = (obj) => {
   return new Promise((resolve, reject) => {
     connection.query(`INSERT INTO restaurants (${keys[0]}, ${keys[1]}, ${keys[2]}, ${keys[3]}, ${keys[4]}, ${keys[5]}, ${keys[6]}, ${keys[7]}) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, values, (err, data) => {
       if (err) {
-        console.log(err);
         reject(err.message);
       }
       resolve(data);
     });
   });
+}
+
+const addPhoto = (obj) => {
+   const keys = [];
+   const values = [];
+   for (let category in obj) {
+     keys.push(category);
+     values.push(obj[category]);
+   }
+   console.log(keys, values);
+   return new Promise((resolve, reject) => {
+     connection.query(`INSERT INTO photos (${keys[0]}, ${keys[1]}) VALUES (?, ?)`, values, (err, data) => {
+       if (err) {
+         reject(err.message);
+       }
+       resolve(data);
+     })
+   })
 }
 
 module.exports = {
@@ -113,4 +130,5 @@ module.exports = {
   getSimilar,
   getPhotos,
   addRestaurant,
+  addPhoto,
 };

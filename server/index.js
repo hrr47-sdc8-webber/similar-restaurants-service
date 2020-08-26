@@ -60,8 +60,13 @@ app.post('/restaurants/:id/images', (req, res) => {
 
 //DELETE: delete a restaurant (and all associated photos)
 app.delete('/restaurants/:id', (req, res) => {
-  db.deleteRestaurant(req.params.id)
-    .then(() => res.status(200).send('Successfully deleted'))
+  db.deletePhotos(req.params.id)
+    .then(() => {
+      db.deleteRestaurant(req.params.id)
+        .then(() => {
+          res.status(200).send('Successfully deleted restaurant');
+        });
+    })
     .catch(() => res.status(500).send('Unable to delete'));
 });
 

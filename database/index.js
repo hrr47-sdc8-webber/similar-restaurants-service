@@ -122,8 +122,22 @@ const addPhoto = (obj) => {
 }
 
 const deleteRestaurant = (id) => {
+  console.log(id);
   return new Promise ((resolve, reject) => {
-    connection.query('DELETE FROM restaurants WHERE rid = ?', [id], (err, data) => {
+    connection.query(`DELETE FROM restaurants WHERE rid = ${id}`, (err, data) => {
+      if (err) {
+        console.log(err.message);
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+}
+
+const deletePhotos = (id) => {
+  console.log(id);
+  return new Promise ((resolve, reject) => {
+    connection.query('DELETE FROM photos WHERE restaurant_id = ?', [id], (err, data) => {
       if (err) {
         reject(err.message);
       }
@@ -143,4 +157,5 @@ module.exports = {
   addRestaurant,
   addPhoto,
   deleteRestaurant,
+  deletePhotos,
 };

@@ -86,6 +86,72 @@ const getPhotos = (args) => {
   });
 };
 
+const addRestaurant = (obj) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  return new Promise((resolve, reject) => {
+    connection.query(`INSERT INTO restaurants (${keys[0]}, ${keys[1]}, ${keys[2]}, ${keys[3]}, ${keys[4]}, ${keys[5]}, ${keys[6]}, ${keys[7]}) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, values, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
+
+const addPhoto = (obj) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  return new Promise((resolve, reject) => {
+    connection.query(`INSERT INTO photos (${keys[0]}, ${keys[1]}) VALUES (?, ?)`, values, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
+
+const deleteRestaurant = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(`DELETE FROM restaurants WHERE rid = ${id}`, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
+
+const deletePhotos = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query('DELETE FROM photos WHERE restaurant_id = ?', [id], (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
+
+const updateRestaurant = (obj, id) => {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  let query = '';
+  for (let i = 0; i < keys.length; i++) {
+    if (query !== '') { query += ', '; }
+    query += `${keys[i]} = '${values[i]}'`;
+  }
+  return new Promise((resolve, reject) => {
+    connection.query(`UPDATE restaurants SET ${query} WHERE rid = ${id}`, (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+};
+
 module.exports = {
   connection,
   seedDataRestaurants,
@@ -94,4 +160,9 @@ module.exports = {
   getTitle,
   getSimilar,
   getPhotos,
+  addRestaurant,
+  addPhoto,
+  deleteRestaurant,
+  deletePhotos,
+  updateRestaurant,
 };

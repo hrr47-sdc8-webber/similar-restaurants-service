@@ -42,6 +42,23 @@ app.get('/restaurants/:id', (req, res) => {
     });
 });
 
+//POST request: add a new restaurant
+app.post('/restaurants', (req, res) => {
+  //Need to test if this works!!!
+  db.addRestaurant(req.body)
+    .then(() => res.status(200))
+    .catch(() => res.status(500).send('Unable to post'));
+});
+
+//POST request: add new images to an existing restaurant.
+app.post('/restaurants/:id', (req, res) => {
+  console.log(req.params, req.body)
+})
+
+//PUT request: update an existing restaurant based on body of request
+
+//DELETE: delete a restaurant (and all associated photos)
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Listening at http://localhost:${port}`);

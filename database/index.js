@@ -86,6 +86,23 @@ const getPhotos = (args) => {
   });
 };
 
+const addRestaurant = (obj) => {
+  const keys = [];
+  const values = [];
+  for (let category in obj) {
+    keys.push(category);
+    values.push(req.body[category]);
+  }
+  return new Promise((resolve, reject) => {
+    connection.query('INSERT INTO restaurants (?, ?, ?, ?, ?, ?, ?, ?) VALUES (?, ?, ?, ?, ?, ?, ?, ?', keys.concat(values), (err, data) => {
+      if (err) {
+        reject(err.message);
+      }
+      resolve(data);
+    });
+  });
+}
+
 module.exports = {
   connection,
   seedDataRestaurants,
@@ -94,4 +111,5 @@ module.exports = {
   getTitle,
   getSimilar,
   getPhotos,
+  addRestaurant,
 };

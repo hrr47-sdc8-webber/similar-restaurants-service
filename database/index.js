@@ -91,11 +91,12 @@ const addRestaurant = (obj) => {
   const values = [];
   for (let category in obj) {
     keys.push(category);
-    values.push(req.body[category]);
+    values.push(obj[category]);
   }
   return new Promise((resolve, reject) => {
-    connection.query('INSERT INTO restaurants (?, ?, ?, ?, ?, ?, ?, ?) VALUES (?, ?, ?, ?, ?, ?, ?, ?', keys.concat(values), (err, data) => {
+    connection.query(`INSERT INTO restaurants (${keys[0]}, ${keys[1]}, ${keys[2]}, ${keys[3]}, ${keys[4]}, ${keys[5]}, ${keys[6]}, ${keys[7]}) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, values, (err, data) => {
       if (err) {
+        console.log(err);
         reject(err.message);
       }
       resolve(data);

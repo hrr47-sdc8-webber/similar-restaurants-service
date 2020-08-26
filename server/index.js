@@ -44,9 +44,8 @@ app.get('/restaurants/:id', (req, res) => {
 
 //POST request: add a new restaurant
 app.post('/restaurants', (req, res) => {
-  //Need to test if this works!!!
   db.addRestaurant(req.body)
-    .then(() => res.status(200))
+    .then(() => res.status(200).send('Posted!'))
     .catch(() => res.status(500).send('Unable to post'));
 });
 

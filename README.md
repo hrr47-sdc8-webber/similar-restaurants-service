@@ -24,15 +24,15 @@ npm run build
 
 If there are no similar restaurants the module doesn't render.
 
-### API
+## API
 
 Use the following routes for all requests to the server:
 
-## GET /restaurants/:id
+### GET /restaurants/:id
 
 A GET request to /restaurants/:id will fetch an object containing information on the current restaurant, similar restaurants (based on category and neighborhood), and photos associated with the similar restaurants.
 
-## POST /restaurants
+### POST /restaurants
 
 A POST request to /restaurants will add a new restaurant to the database. It is extremely important that the request body contains the following properties with corresponding values:
  - name
@@ -44,15 +44,15 @@ A POST request to /restaurants will add a new restaurant to the database. It is 
  - url_handle // must be unique!
  - neighborhood
 
-## POST /restaurants/:id/images
+### POST /restaurants/:id/images
 
 A POST request to /restaurants/:id/images will add a photo for an existing restaurant. The request body must contain a url property with the corresponding url.
 
-## PUT /restaurants/:id
+### PUT /restaurants/:id
 
 A PUT request to /retaurants/:id will update the selected restaurant's existing record: the request body contains an object with any number of existing properties (listed above) along with desired new values.
 
-## DELETE /restaurants/:id
+### DELETE /restaurants/:id
 
 A DELETE request to /restaurants/:id will first remove all photos associated with a location before removing that location from the restaurants database.
 

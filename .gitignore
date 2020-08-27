@@ -27,3 +27,4 @@ dist/
 
 # Files
 dbconfig.js
+database/dbconfig.js

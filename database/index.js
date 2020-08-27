@@ -140,7 +140,7 @@ const updateRestaurant = (obj, id) => {
   let query = '';
   for (let i = 0; i < keys.length; i++) {
     if (query !== '') { query += ', '; }
-    query += `${keys[i]} = '${values[i]}'`;
+    query += `${keys[i]} = "${values[i]}"`;
   }
   return new Promise((resolve, reject) => {
     connection.query(`UPDATE restaurants SET ${query} WHERE rid = ${id}`, (err, data) => {

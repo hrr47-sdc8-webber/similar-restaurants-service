@@ -4,7 +4,7 @@ const faker = require('faker');
 const price = ['$', '$$', '$$$', '$$$$', '$$$$$'];
 const rating = ['3.8', '3.9', '4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0'];
 const ratingLabel = ['Food', 'Decor', 'Service'];
-const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Greek', 'Vegetarian', 'Vegan'];
+const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bulgarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian'];
 const neighborhood = [];
 
 for (let n = 0; n < 1000; n++) {
@@ -25,21 +25,71 @@ for (let n = 0; n < 1000; n++) {
 
 const start = new Date();
 
+const categoryData = fs.createWriteStream('restaurantcategories.csv');
+const neighborhoodData = fs.createWriteStream('restaurantneighborhoods.csv');
 const restData = fs.createWriteStream('restaurantdata.csv');
 const photoData = fs.createWriteStream('restaurantphotos.csv');
+
+const categoryDataGen = (cb) => {
+  let i = 1;
+  function write() {
+    let ok = true;
+    while (ok && i <= category.length) {
+      let cat = `${category[i - 1]}\n`;
+      if (i === category.length) {
+        i++;
+        categoryData.write(cat, 'utf8', cb);
+      } else {
+        if (i === 1) {
+          cat = `name\n${cat}`;
+        }
+        i++;
+        ok = categoryData.write(cat, 'utf8');
+      }
+    }
+    if (i <= category.length) {
+      categoryData.once('drain', write);
+    }
+  }
+  write();
+};
+
+const neighborhoodDataGen = (cb) => {
+  let i = 1;
+  function write() {
+    let ok = true;
+    while (ok && i <= neighborhood.length) {
+      let neighb = `${neighborhood[i - 1]}\n`;
+      if (i === neighborhood.length) {
+        i++;
+        neighborhoodData.write(neighb, 'utf8', cb);
+      } else {
+        if (i === 1) {
+          neighb = `name\n${neighb}`;
+        }
+        i++;
+        ok = neighborhoodData.write(neighb, 'utf8');
+      }
+    }
+    if (i <= neighborhood.length) {
+      neighborhoodData.once('drain', write);
+    }
+  }
+  write();
+};
 
 const restDataGen = (cb) => {
   let i = 1;
   function write() {
     let ok = true;
     while (ok && i <= 10000000) {
-      let rest = `${faker.commerce.color()} ${faker.name.firstName()} ${faker.lorem.word()},${faker.helpers.randomize(price)},${faker.helpers.randomize(rating)},${faker.helpers.randomize(ratingLabel)},${faker.lorem.sentence()},${faker.helpers.randomize(category)},${faker.helpers.randomize(neighborhood)}\n`;
+      let rest = `${faker.commerce.color()} ${faker.name.firstName()} ${faker.lorem.word()},${faker.helpers.randomize(price)},${faker.helpers.randomize(rating)},${faker.helpers.randomize(ratingLabel)},${faker.lorem.sentence()},${Math.floor(Math.random() * category.length) + 1},${Math.floor(Math.random() * neighborhood.length) + 1}\n`;
       if (i === 10000000) {
         i++;
         restData.write(rest, 'utf8', cb);
       } else {
         if (i === 1) {
-          rest = `name,price,rating_sore,rating_label,description,category,neighborhood\n${rest}`;
+          rest = `name,price,rating_score,rating_label,description,category,neighborhood\n${rest}`;
         }
         i++;
         ok = restData.write(rest, 'utf8');
@@ -81,17 +131,30 @@ const photoDataGen = (cb) => {
   write();
 };
 
-restDataGen((err) => {
+console.log('Generating category data...')
+categoryDataGen((err) => {
   if (err) {
     console.log(err);
   }
-  console.log('Restaurant data generated. Generating photo data...');
-  photoDataGen((error) => {
-    if (error) {
+  console.log('Generating neighborhood data...');
+  neighborhoodDataGen((err) => {
+    if (err) {
       console.log(err);
     }
-    const end = new Date() - start;
-    console.log(`Data generation complete. Total execution time: ${end}ms`);
+    console.log('Generating restaurant data...');
+    restDataGen((err) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Generating photo data...');
+      photoDataGen((err) => {
+        if (err) {
+          console.log(err);
+        }
+        const end = new Date() - start;
+        console.log(`Data generation complete. Total execution time: ${end}ms`);
+      });
+    });
   });
 });
 

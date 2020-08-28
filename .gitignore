@@ -28,3 +28,7 @@ dist/
 # Files
 dbconfig.js
 database/dbconfig.js
+restaurantcategories.csv
+restaurantdata.csv
+restaurantneighborhoods.csv
+restaurantphotos.csv

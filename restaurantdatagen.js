@@ -7,7 +7,7 @@ const ratingLabel = ['Food', 'Decor', 'Service'];
 const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bulgarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian'];
 const neighborhood = [];
 
-for (let n = 0; n < 1000; n++) {
+for (let n = 0; n < 10000; n++) {
   if (n % 10 === 0) {
     neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}`);
   } else if (n % 7 === 0) {

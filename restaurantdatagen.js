@@ -41,7 +41,7 @@ const categoryDataGen = (cb) => {
         categoryData.write(cat, 'utf8', cb);
       } else {
         if (i === 1) {
-          cat = `name\n${cat}`;
+          cat = `c_name\n${cat}`;
         }
         i++;
         ok = categoryData.write(cat, 'utf8');
@@ -65,7 +65,7 @@ const neighborhoodDataGen = (cb) => {
         neighborhoodData.write(neighb, 'utf8', cb);
       } else {
         if (i === 1) {
-          neighb = `name\n${neighb}`;
+          neighb = `n_name\n${neighb}`;
         }
         i++;
         ok = neighborhoodData.write(neighb, 'utf8');
@@ -157,7 +157,6 @@ categoryDataGen((err) => {
     });
   });
 });
-
 /*
 id: i,
         name: faker.random.words(),

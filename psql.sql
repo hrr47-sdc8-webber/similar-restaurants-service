@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS neighborhoods;
 
 CREATE TABLE IF NOT EXISTS neighborhoods (
   nid SERIAL,
-  name varchar(70),
+  n_name varchar(70),
   PRIMARY KEY (nid)
 );
 
 CREATE TABLE IF NOT EXISTS categories (
   cid SERIAL,
-  name varchar (20),
+  c_name varchar (20),
   PRIMARY KEY (cid)
 );
 
@@ -36,8 +36,8 @@ CREATE TABLE restaurants (
 
 CREATE TABLE photos (
   pid SERIAL,
-  url  varchar(70),
   restaurant_id int,
+  url  varchar(70),
   PRIMARY KEY (pid),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(rid)
 );

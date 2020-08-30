@@ -16,7 +16,8 @@
     "build": "webpack -p",
     "build:dev": "webpack -d --watch",
     "schema": "mysql -u root < database/schema.sql",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "generate": "node restaurantdatagen.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

@@ -9,17 +9,17 @@ const neighborhood = [];
 
 for (let n = 0; n < 50000; n++) {
   if (n % 10 === 0) {
-    neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}`);
+    neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}, ${faker.address.county()}, ${faker.address.country()}`);
   } else if (n % 7 === 0) {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}`);
+    neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
   } else if (n % 5 === 0) {
-    neighborhood.push(`${faker.address.streetName()}`);
+    neighborhood.push(`${faker.address.streetName()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
   } else if (n % 3 === 0) {
-    neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}`);
+    neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}, ${faker.address.state()}, ${faker.address.county()}`);
   } else if (n % 2 === 0) {
-    neighborhood.push(`${faker.address.city()}`);
+    neighborhood.push(`${faker.address.city()}, ${faker.address.stateAbbr()}, ${faker.address.zipCode()}`);
   } else {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}`);
+    neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}, ${faker.address.country()}, ${faker.address.state()}`);
   }
 }
 

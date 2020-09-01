@@ -4,10 +4,10 @@ const faker = require('faker');
 const price = ['$', '$$', '$$$', '$$$$', '$$$$$'];
 const rating = ['3.8', '3.9', '4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0'];
 const ratingLabel = ['Food', 'Decor', 'Service'];
-const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bulgarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian'];
+const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bavarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian', 'Cantonese', 'Hawaiian', 'Asian Fusion', 'Cafe', 'American', 'Contemporary', 'Tapas', 'Seafood', 'Comfort Food', 'Tex-Mex', 'BBQ', 'Filipino', 'Indonesian', 'Persian', 'Scandanavian', 'Smoothies'];
 const neighborhood = [];
 
-for (let n = 0; n < 10000; n++) {
+for (let n = 0; n < 50000; n++) {
   if (n % 10 === 0) {
     neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}`);
   } else if (n % 7 === 0) {
@@ -83,13 +83,13 @@ const restDataGen = (cb) => {
   function write() {
     let ok = true;
     while (ok && i <= 10000000) {
-      let rest = `${faker.commerce.color()} ${faker.name.firstName()} ${faker.lorem.word()},${faker.helpers.randomize(price)},${faker.helpers.randomize(rating)},${faker.helpers.randomize(ratingLabel)},${faker.lorem.sentence()},${Math.floor(Math.random() * category.length) + 1},${Math.floor(Math.random() * neighborhood.length) + 1}\n`;
+      let rest = `${faker.commerce.color()} ${faker.name.firstName()} ${faker.lorem.word()}|${faker.helpers.randomize(price)}|${faker.helpers.randomize(rating)}|${faker.helpers.randomize(ratingLabel)}|${faker.lorem.sentence()}|${Math.floor(Math.random() * category.length) + 1}|${Math.floor(Math.random() * neighborhood.length) + 1}\n`;
       if (i === 10000000) {
         i++;
         restData.write(rest, 'utf8', cb);
       } else {
         if (i === 1) {
-          rest = `name,price,rating_score,rating_label,description,category,neighborhood\n${rest}`;
+          rest = `name|price|rating_score|rating_label|description|category|neighborhood\n${rest}`;
         }
         i++;
         ok = restData.write(rest, 'utf8');
@@ -111,14 +111,14 @@ const photoDataGen = (cb) => {
       let photos = '';
       for (let y = 0; y < numPhotos; y++) {
         const num = Math.floor(Math.random() * 500) + 1;
-        photos += `${i},https://sdc-similar-restaurants.s3-us-west-2.amazonaws.com/${num}.jpg\n`;
+        photos += `${i}|https://sdc-similar-restaurants.s3-us-west-2.amazonaws.com/${num}.jpg\n`;
       }
       if (i === 10000000) {
         i++;
         photoData.write(photos, 'utf8', cb);
       } else {
         if (i === 1) {
-          photos = `restaurant_id,url\n${photos}`;
+          photos = `restaurant_id|url\n${photos}`;
         }
         i++;
         ok = photoData.write(photos, 'utf8');

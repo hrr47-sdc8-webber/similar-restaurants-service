@@ -4,22 +4,22 @@ const faker = require('faker');
 const price = ['$', '$$', '$$$', '$$$$', '$$$$$'];
 const rating = ['3.8', '3.9', '4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0'];
 const ratingLabel = ['Food', 'Decor', 'Service'];
-const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bulgarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian'];
+const category = ['Mexican', 'French', 'Italian', 'Californian', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Indian', 'German', 'Spanish', 'Pizza', 'Greek', 'Vegetarian', 'Vegan', 'Mediterranean', 'Spanish', 'Soul Food', 'Turkish', 'Moroccan', 'Middle Eastern', 'Cajun', 'Malaysian', 'Peruvian', 'Puerto Rican', 'Russian', 'Jamaican', 'Brazilian', 'Taiwanese', 'Armenian', 'Caribbean', 'Korean', 'Cuban', 'Bavarian', 'Ethiopian', 'Belgian', 'Egyptian', 'Haitian', 'Cantonese', 'Hawaiian', 'Asian Fusion', 'Cafe', 'American', 'Contemporary', 'Tapas', 'Seafood', 'Comfort Food', 'Tex-Mex', 'BBQ', 'Filipino', 'Indonesian', 'Persian', 'Scandanavian', 'Smoothies'];
 const neighborhood = [];
 
-for (let n = 0; n < 10000; n++) {
+for (let n = 0; n < 50000; n++) {
   if (n % 10 === 0) {
-    neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}`);
+    neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}, ${faker.address.county()}, ${faker.address.country()}`);
   } else if (n % 7 === 0) {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}`);
+    neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
   } else if (n % 5 === 0) {
-    neighborhood.push(`${faker.address.streetName()}`);
+    neighborhood.push(`${faker.address.streetName()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
   } else if (n % 3 === 0) {
-    neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}`);
+    neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}, ${faker.address.state()}, ${faker.address.county()}`);
   } else if (n % 2 === 0) {
-    neighborhood.push(`${faker.address.city()}`);
+    neighborhood.push(`${faker.address.city()}, ${faker.address.stateAbbr()}, ${faker.address.zipCode()}`);
   } else {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}`);
+    neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}, ${faker.address.country()}, ${faker.address.state()}`);
   }
 }
 

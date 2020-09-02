@@ -9,17 +9,17 @@ const neighborhood = [];
 
 for (let n = 0; n < 50000; n++) {
   if (n % 10 === 0) {
-    neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}, ${faker.address.county()}, ${faker.address.country()}`);
+    neighborhood.push([`${faker.name.lastName()}${faker.address.citySuffix()}`, n]);
   } else if (n % 7 === 0) {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
+    neighborhood.push([`${faker.address.cityPrefix()} ${faker.random.word()}`, n]);
   } else if (n % 5 === 0) {
-    neighborhood.push(`${faker.address.streetName()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
+    neighborhood.push([`${faker.address.streetName()}`, n]);
   } else if (n % 3 === 0) {
-    neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}, ${faker.address.state()}, ${faker.address.county()}`);
+    neighborhood.push([`${faker.name.lastName()} ${faker.address.streetSuffix()}`, n]);
   } else if (n % 2 === 0) {
-    neighborhood.push(`${faker.address.city()}, ${faker.address.stateAbbr()}, ${faker.address.zipCode()}`);
+    neighborhood.push([`${faker.address.city()}`, n]);
   } else {
-    neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}, ${faker.address.country()}, ${faker.address.state()}`);
+    neighborhood.push([`${faker.address.cityPrefix()} ${faker.address.county()}`, n]);
   }
 }
 
@@ -43,23 +43,26 @@ const cassandraDataGen = (cb) => {
         if (y === photoNum - 1) { photos += ']'; }
       }
       const name = `${faker.commerce.color()} ${faker.name.firstName()} ${faker.lorem.word()}`;
-      const cat = faker.helpers.randomize(category);
-      const neighb = faker.helpers.randomize(neighborhood);
+      const catIndex = Math.floor(Math.random() * category.length);
+      const cat = category[catIndex];
+      const neighbDuple = faker.helpers.randomize(neighborhood);
+      const neighb = neighbDuple[0];
+      const neighbId = neighbDuple[1];
       const pr = faker.helpers.randomize(price);
       const rate = faker.helpers.randomize(rating);
       const label = faker.helpers.randomize(ratingLabel);
       const desc = faker.lorem.sentence();
 
-      let restEntry = `${i}|${name}|${cat}|${neighb}\n`;
-      let neighbEntry = `${neighb}|${cat}|${i}|${name}|${pr}|${rate}|${label}|${desc}|${photos}\n`;
+      let restEntry = `${i}|${name}|${cat}|${catIndex + 1}|${neighb}|${neighbId}\n`;
+      let neighbEntry = `${neighbId}|${catIndex + 1}|${i}|${name}|${pr}|${rate}|${label}|${desc}|${photos}\n`;
       if (i === 10000000) {
         i++;
         cassandraRest.write(restEntry, 'utf8');
         cassandraNeighb.write(neighbEntry, 'utf8', cb);
       } else {
         if (i === 1) {
-          restEntry = `rid|name|category|neighborhood\n${restEntry}`;
-          neighbEntry = `neighborhood|category|rid|name|price|rating_score|rating_label|description|photos\n${neighbEntry}`;
+          restEntry = `rid|name|category|category_id|neighborhood|neighborhood_id\n${restEntry}`;
+          neighbEntry = `neighborhood_id|category_id|rid|name|price|rating_score|rating_label|description|photos\n${neighbEntry}`;
         }
         i++;
         ok1 = cassandraRest.write(restEntry, 'utf8');
@@ -88,3 +91,18 @@ cassandraDataGen((err) => {
   const end = new Date() - start;
   console.log(`Data generated for Cassandra. Execution time: ${end}ms`);
 });
+
+
+/* if (n % 10 === 0) {
+  neighborhood.push(`${faker.name.lastName()}${faker.address.citySuffix()}, ${faker.address.county()}, ${faker.address.country()}`);
+} else if (n % 7 === 0) {
+  neighborhood.push(`${faker.address.cityPrefix()} ${faker.random.word()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
+} else if (n % 5 === 0) {
+  neighborhood.push(`${faker.address.streetName()}, ${faker.address.stateAbbr()}, ${faker.address.country()}`);
+} else if (n % 3 === 0) {
+  neighborhood.push(`${faker.name.lastName()} ${faker.address.streetSuffix()}, ${faker.address.state()}, ${faker.address.county()}`);
+} else if (n % 2 === 0) {
+  neighborhood.push(`${faker.address.city()}, ${faker.address.stateAbbr()}, ${faker.address.zipCode()}`);
+} else {
+  neighborhood.push(`${faker.address.cityPrefix()} ${faker.address.county()}, ${faker.address.country()}, ${faker.address.state()}`);
+} */

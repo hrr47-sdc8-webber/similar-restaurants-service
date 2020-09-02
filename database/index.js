@@ -1,92 +1,58 @@
-const mysql = require('mysql');
-const dbConfig = require('./dbconfig.js');
+const pgp = require('pg-promise')();
 
-const connection = mysql.createConnection(dbConfig);
+const db = pgp('postgres://brennancaldwell@localhost:5432/similarRestaurants');
 
-connection.connect();
-
-const seedDataRestaurants = (name, price, ratingLabel, ratingScore,
-  description, urlHandle, category, neighborhood) => {
-  const query = `INSERT INTO restaurants (name, price, rating_label, rating_score, description, url_handle, category, neighborhood) VALUES ("${name}", "${price}", "${ratingLabel}", "${ratingScore}", "${description}", "${urlHandle}", "${category}", "${neighborhood}");`;
-  connection.query(query, (err, success) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log(success);
-    }
-  });
-};
-
-const seedDataPhotos = (url, restaurantId) => {
-  const query = `INSERT INTO photos (url, restaurant_id) VALUES ("${url}", ${restaurantId});`;
-  connection.query(query, (err, success) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log(success);
-    }
-  });
-};
-
-// Update one record to have consistency across all our services
-const updateOne = () => {
-  const query = `UPDATE restaurants SET name = "Stevens' Kitchen", category = "Greek", neighborhood = "Financial District" WHERE rid = 1;`;
-  connection.query(query, (err, success) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log(success);
-    }
-  });
-}
-
-// Given a restaurant id, populate name, category, and neighborhood in title.
-const getTitle = (args) => {
-  const query = 'SELECT name, category, neighborhood FROM restaurants WHERE rid = ?;';
+const fetchRestaurants = (id) => {
   return new Promise((resolve, reject) => {
-    connection.query(query, args, (err, data) => {
-      if (err) {
-        reject(err.message);
-      }
-      resolve(data);
-    });
+    db.many('SELECT restaurants.rid, restaurants.name, restaurants.price, restaurants.rating_score, restaurants.rating_label, restaurants.description, categories.c_name, neighborhoods.n_name, photos.url from restaurants INNER JOIN categories ON restaurants.category = categories.cid INNER JOIN neighborhoods ON restaurants.neighborhood = neighborhoods.nid LEFT JOIN photos on photos.restaurant_id = restaurants.rid where restaurants.category = (select category from restaurants where rid = $1) and restaurants.neighborhood = (select neighborhood from restaurants where rid = $1)', id)
+      .then((data) => {
+        const results = {
+          restaurant: {},
+          similar: [],
+          photos: [],
+        };
+        const ridTracker = {};
+        let counter = 0;
+
+        data.forEach((item) => {
+          if (item.rid === Number(id) && ridTracker[item.rid] === undefined) {
+            ridTracker[item.rid] = true;
+            results.restaurant.name = item.name;
+            results.restaurant.category = item.c_name;
+            results.restaurant.neighborhood = item.n_name;
+          } else if (item.rid !== Number(id) && counter < 6) {
+            if (ridTracker[item.rid] === undefined) {
+              ridTracker[item.rid] = counter;
+              counter++;
+              const similarRestObj = {
+                rid: item.rid,
+                name: item.name,
+                price: item.price,
+                rating_label: item.rating_label,
+                rating_score: item.rating_score,
+                description: item.description,
+                category: item.c_name,
+                neighborhood: item.n_name,
+              };
+              results.similar.push(similarRestObj);
+            }
+            const photoObj = {
+              url: item.url,
+              restaurant_id: item.rid,
+            };
+            if (results.photos[ridTracker[item.rid]] === undefined) {
+              results.photos[ridTracker[item.rid]] = [];
+            }
+            results.photos[ridTracker[item.rid]].push(photoObj);
+          }
+        });
+        resolve(results);
+      })
+      .catch((err) => reject(err));
   });
 };
 
-// Given a category and a neighborhood, populate the grid with max 6 cards.
-// With similar (same category) restaurants nearby (same neighborhood).
-const getSimilar = (args) => {
-  const query = 'SELECT DISTINCT rid, name, price, rating_label, rating_score, description, category, neighborhood FROM restaurants WHERE category = ? AND neighborhood = ? AND rid != ? LIMIT 6;';
-  return new Promise((resolve, reject) => {
-    connection.query(query, args, (err, data) => {
-      if (err) {
-        reject(err.message);
-      }
-      resolve(data);
-    });
-  });
-};
-
-// Given a restaurant id, for each card, populate their photos.
-const getPhotos = (args) => {
-  const query = 'SELECT url, restaurant_id FROM photos WHERE restaurant_id = ?;';
-  return new Promise((resolve, reject) => {
-    connection.query(query, args, (err, data) => {
-      if (err) {
-        reject(err.message);
-      }
-      resolve(data);
-    });
-  });
-};
-
-const addRestaurant = (obj) => {
+/* const addRestaurant = (obj) => {
   const keys = Object.keys(obj);
   const values = Object.values(obj);
   return new Promise((resolve, reject) => {
@@ -150,19 +116,9 @@ const updateRestaurant = (obj, id) => {
       resolve(data);
     });
   });
-};
+}; */
 
 module.exports = {
-  connection,
-  seedDataRestaurants,
-  seedDataPhotos,
-  updateOne,
-  getTitle,
-  getSimilar,
-  getPhotos,
-  addRestaurant,
-  addPhoto,
-  deleteRestaurant,
-  deletePhotos,
-  updateRestaurant,
+  db,
+  fetchRestaurants,
 };

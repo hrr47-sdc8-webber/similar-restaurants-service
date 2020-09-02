@@ -12,39 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/restaurants/:id', (req, res) => {
-  const allData = {};
-  const argsTitle = [req.params.id];
-  return db.getTitle(argsTitle)
-    .then((dataTitle) => {
-      const restaurant = dataTitle[0];
-      allData.restaurant = {
-        name: restaurant.name,
-        category: restaurant.category,
-        neighborhood: restaurant.neighborhood,
-      };
-      const argsSimilar = [restaurant.category, restaurant.neighborhood, argsTitle[0]];
-      return db.getSimilar(argsSimilar);
-    })
-    .then((dataSimilar) => {
-      allData.similar = dataSimilar;
-      const results = dataSimilar.map((item) => {
-        const argsPhotos = [item.rid];
-        return Promise.resolve(db.getPhotos(argsPhotos));
-      });
-      return Promise.all(results);
-    })
-    .then((dataPhotos) => {
-      allData.photos = dataPhotos;
-    })
-    .then(() => {
-      res.status(200).send(allData);
-    })
-    .catch(() => {
-      res.status(500).send('error in getting the data from the db');
-    });
+  db.fetchRestaurants(req.params.id)
+    .then((data) => res.status(200).send(data))
+    .catch(() => res.status(500).send('An error occurred'));
 });
 
-//  POST request: add a new restaurant
+/* //  POST request: add a new restaurant
 app.post('/restaurants', (req, res) => {
   db.addRestaurant(req.body)
     .then(() => res.status(200).send('Sucessfully posted new restaurant'))
@@ -75,7 +48,7 @@ app.delete('/restaurants/:id', (req, res) => {
         });
     })
     .catch(() => res.status(500).send('Unable to delete'));
-});
+}); */
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

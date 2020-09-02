@@ -28,6 +28,7 @@ dist/
 # Files
 dbconfig.js
 database/dbconfig.js
+newrelic.js
 restaurantcategories.csv
 restaurantdata.csv
 restaurantneighborhoods.csv

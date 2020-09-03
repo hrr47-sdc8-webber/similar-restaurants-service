@@ -1,0 +1,14 @@
+config:
+  target: "http://localhost:3004/"
+  phases:
+    - duration: 300
+      arrivalRate: 1
+  processor: "./randomnumber.js"
+
+scenarios:
+  - name: "Fetch similar restaurants"
+    flow:
+      - function: "generateRandomNumber"
+      - get:
+          url: "http://localhost:3004/restaurants/{{ id }}"
+      - log: "Sent request to /restaurants/{{ id }}"

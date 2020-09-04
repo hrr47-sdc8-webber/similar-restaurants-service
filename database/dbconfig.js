@@ -1,6 +1,3 @@
 module.exports = {
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'zagatSimilarRestaurants',
+  url: 'postgres://brennancaldwell@localhost:5432/similarRestaurants',
 };

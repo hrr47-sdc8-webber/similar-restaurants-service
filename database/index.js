@@ -1,6 +1,7 @@
 const pgp = require('pg-promise')();
+const config = require('./dbconfig.js');
 
-const db = pgp('postgres://brennancaldwell@localhost:5432/similarRestaurants');
+const db = pgp(config.url);
 
 const fetchRestaurants = (id) => {
   return new Promise((resolve, reject) => {

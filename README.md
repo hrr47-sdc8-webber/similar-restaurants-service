@@ -1,4 +1,4 @@
-# Zigat.com similar restaurants module
+# Re:View similar restaurants module
 > This module shows similar restaurants to the one displayed on a page by category and neighborhood. It's rendered at the bottom of the page above the footer.
 
 ## Related Projects

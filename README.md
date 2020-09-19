@@ -1,5 +1,5 @@
 # Re:View similar restaurants module
-> This module displays up to six "similar restaurants" to the primary restaurant accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
+This module displays up to six "similar restaurants" to the primary restaurant accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
 
 ## Related Projects
   - https://github.com/hrr47-sdc8-webber/photo-carousel-service

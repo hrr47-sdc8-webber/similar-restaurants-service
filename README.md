@@ -1,10 +1,10 @@
 # Re:View similar restaurants module
-> This module shows similar restaurants to the one displayed on a page by category and neighborhood. It's rendered at the bottom of the page above the footer.
+> This module displays up to six "similar restaurants" to the primary restaurant accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
 
 ## Related Projects
-  - https://github.com/FEC-7-Stevens/photo-carousel-service
-  - https://github.com/FEC-7-Stevens/info-sidebar-service
-  - https://github.com/FEC-7-Stevens/tips-recommendations-service
+  - https://github.com/hrr47-sdc8-webber/photo-carousel-service
+  - https://github.com/hrr47-sdc8-webber/info-sidebar-service
+  - https://github.com/hrr47-sdc8-webber/tips-recommendations-service
 
 ## Table of Contents
 1. [Usage](#Usage)
@@ -22,7 +22,7 @@ npm start
 npm run build
 ```
 
-If there are no similar restaurants the module doesn't render.
+The module will not render unless there are at least two similar restaurants.
 
 ## API
 
@@ -71,12 +71,12 @@ From within this repository's root directory:
 npm install
 ```
 
-### Database Creation and Seeding
-First create the schema, then add 700 restaurants data with relative photos.
+### Data Generation
+In order to seed the database, you first need to generate the data by running the following:
 ```sh
-npm run schema
-npm run seed
+node restaurantdatagen.js
 ```
+This will create separate CSV files for each PostgreSQL table: neighborhoods, categories, restaurants, and photos. In order to load the schema into the database, either run the psql.sql file in the shell, or manually define each table as written in psql.sql. Then, run COPY commands on each CSV file in turn. This will seed the database with 10M restaurants, 50K neighborhoods, 58 cuisine types, and around 35M preview photo urls.
 
 ### Development Enviroment
 In two separate terminal windows:

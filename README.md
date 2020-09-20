@@ -45,7 +45,7 @@ A ```POST``` request to ```/restaurants``` will add a new restaurant to the data
 {
   name: String, // the name of the restaurant
   price: String, // represented as '$', '$$', '$$$', '$$$$', or '$$$$$'
-  rating_label: String, // the service associated with the rating_score, e.g. 'Service', 'Food', etc.
+  rating_label: String, // the service associated with the rating_score, e.g. 'Service', 'Food', 'Decor', etc.
   rating_score: String, // a string representation of a decimal number below five, rounded to the nearest tenths digit, e.g. '4.2'
   description: String, // a 1-2 sentence description of the restaurant
   category: Number, // representing the corresponding category ID

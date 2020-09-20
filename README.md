@@ -15,7 +15,7 @@ Welcome to Re:View, a restaurant rating website! This module displays up to six 
 4. [Screenshots](#Screenshots)
 
 ## Usage
-> Example URL: http://localhost:3004/2/
+> Example URL: ```http://localhost:3004/2/```
 
 IMPORTANT: Before running the server, you will need to initialize and seed the database! Please see all information related to data generation below! 
 
@@ -26,19 +26,19 @@ npm start
 npm run build
 ```
 
-Direct your browser to http://localhost:3004/:id/, replacing :id with any desired location ID between 1 and 10000000. The module will not render unless there are at least two similar restaurants.
+Direct your browser to ```http://localhost:3004/:id/```, replacing ```:id``` with any desired location ID between 1 and 10000000. The module will not render unless there are at least two similar restaurants.
 
 ## API
 
 Use the following routes for all requests to the server:
 
-### GET /restaurants/:id
+### GET ```/restaurants/:id```
 
-A GET request to /restaurants/:id will fetch an object containing information on the current restaurant, similar restaurants (based on category and neighborhood), and photos associated with each similar restaurant.
+A GET request to ```/restaurants/:id``` will fetch an object containing information on the current restaurant, similar restaurants (based on category and neighborhood), and photos associated with each similar restaurant.
 
-### POST /restaurants
+### POST ```/restaurants```
 
-A POST request to /restaurants will add a new restaurant to the database. It is extremely important that the request body contains the following properties with corresponding values:
+A POST request to ```/restaurants``` will add a new restaurant to the database. It is extremely important that the request body contains the following properties with corresponding values:
  - name // string
  - price // string, represented as  $, $$, $$$, $$$$, or $$$$
  - rating_label // string, "Service", "Food", etc.
@@ -47,13 +47,13 @@ A POST request to /restaurants will add a new restaurant to the database. It is 
  - category // number, representing the corresponding category ID
  - neighborhood // number, representing the corresponding neighborhood ID
 
-### POST /restaurants/:id/images
+### POST ```/restaurants/:id/images```
 
-A POST request to /restaurants/:id/images will add a photo for an existing restaurant. The request body need only contain a url property with the corresponding url.
+A POST request to ```/restaurants/:id/images``` will add a photo for an existing restaurant. The request body need only contain a url property with the corresponding url.
 
-### PUT /restaurants/:id
+### PUT ```/restaurants/:id```
 
-A PUT request to /retaurants/:id will update the selected restaurant's existing record: the request body must contain an object with any number of existing properties (listed above) along with desired new values. For example
+A PUT request to ```/retaurants/:id``` will update the selected restaurant's existing record: the request body must contain an object with any number of existing properties (listed above) along with desired new values. For example
 
 ```
 { name: 'New Name' }
@@ -62,9 +62,9 @@ A PUT request to /retaurants/:id will update the selected restaurant's existing 
 ```
 Any number of the existing properties will be accepted by the route.
 
-### DELETE /restaurants/:id
+### DELETE ```/restaurants/:id```
 
-A DELETE request to /restaurants/:id will first remove all photos associated with a location before removing that location from the restaurants database.
+A DELETE request to ```/restaurants/:id``` will first remove all photos associated with a location before removing that location from the restaurants database.
 
 
 ## Requirements
@@ -86,7 +86,7 @@ In order to seed the database, you first need to generate the data by running th
 ```sh
 node restaurantdatagen.js
 ```
-This will create separate CSV files for each PostgreSQL table: neighborhoods, categories, restaurants, and photos. In order to load the schema into the database, either run the psql.sql file (located in the project's root directory) in the terminal, or manually define each table in the psql shell, as written in psql.sql. 
+This will create separate CSV files for each PostgreSQL table: neighborhoods, categories, restaurants, and photos. In order to load the schema into the database, either run the ```psql.sql``` file (located in the project's root directory) in the terminal, or manually define each table in the psql shell, as written in ```psql.sql```. 
 
 Then, from the psql shell, run COPY commands on each CSV file in turn, seeding all tables in the following order: Neighborhoods, Categories, Restaurants, Photos. For example:
 

@@ -41,13 +41,13 @@ A GET request to ```/restaurants/:id``` will fetch an object containing informat
 ### POST ```/restaurants```
 
 A POST request to ```/restaurants``` will add a new restaurant to the database. It is extremely important that the request body object contains the following properties with corresponding values:
- - name // string
- - price // string, represented as  $, $$, $$$, $$$$, or $$$$
- - rating_label // string, "Service", "Food", etc.
- - rating_score // string, a representation of a decimal number below five, rounded to nearest tenths digit, e.g. "4.2"
- - description // string
- - category // number, representing the corresponding category ID
- - neighborhood // number, representing the corresponding neighborhood ID
+ - ```name``` // String
+ - ```price``` // String, represented as  ```'$'```, ```'$$'```, ```'$$$'```, ```'$$$$'```, or ```'$$$$$'```
+ - ```rating_label``` // String, ```'Service'```, ```'Food'```, etc.
+ - ```rating_score``` // String, a representation of a decimal number below five, rounded to nearest tenths digit, e.g. ```'4.2'```
+ - ```description``` // String
+ - ```category``` // Number, representing the corresponding category ID
+ - ```neighborhood``` // Number, representing the corresponding neighborhood ID
 
 ### POST ```/restaurants/:id/images```
 

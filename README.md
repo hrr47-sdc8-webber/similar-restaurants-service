@@ -17,14 +17,16 @@ Welcome to Re:View, a restaurant rating website! This module displays up to six 
 ## Usage
 > Example URL: http://localhost:3004/2/
 
-To initialize the page, in two separate terminal windows:
+IMPORTANT: Before running the server, you will need to initialize and seed the database! Please see all information related to data generation below! 
+
+Once your database is seeded and up and running, to initialize the page, run the following in two separate terminal windows:
 
 ```sh
 npm start
 npm run build
 ```
 
-The module will not render unless there are at least two similar restaurants.
+Direct your browser to http://localhost:3004/:id/, replacing :id with any desired location ID between 1 and 10000000. The module will not render unless there are at least two similar restaurants.
 
 ## API
 

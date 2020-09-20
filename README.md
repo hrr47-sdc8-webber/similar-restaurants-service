@@ -1,4 +1,4 @@
-# Re:View similar restaurants module
+# Re:View Similar Restaurants Module
 Welcome to Re:View, a restaurant rating website! This module displays up to six "similar restaurants" to the primary restaurant as accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
 
 ![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")

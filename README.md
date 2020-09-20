@@ -55,7 +55,7 @@ A ```POST``` request to ```/restaurants/:id/images``` will add a photo for an ex
 
 ### ```PUT``` to ```/restaurants/:id```
 
-A ```PUT``` request to ```/retaurants/:id``` will update the selected restaurant's existing record: the request body must contain an object with any number of existing properties (listed above, under ```GET```) along with desired new values. For example
+A ```PUT``` request to ```/retaurants/:id``` will update the selected restaurant's existing record: the request body must contain an object with any number of existing properties (listed above, under ```GET```) along with desired new values. For example:
 
 ```
 { name: 'New Name' }

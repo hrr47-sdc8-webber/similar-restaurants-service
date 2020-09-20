@@ -1,5 +1,5 @@
 # Re:View Similar Restaurants Module
-Welcome to Re:View, a restaurant rating website! This module displays up to six "similar restaurants" to the primary restaurant as accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
+Welcome to Re:View, your restaurant resource! This module displays up to six "similar restaurants" to the primary restaurant as accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
 
 ![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")
 
@@ -26,7 +26,9 @@ npm start
 npm run build
 ```
 
-Direct your browser to ```http://localhost:3004/:id/```, replacing ```:id``` with any desired location ID between 1 and 10000000. The module will not render unless there are at least two similar restaurants.
+Direct your browser to ```http://localhost:3004/:id/```, replacing ```:id``` with any desired location ID between 1 and 10000000. 
+
+> Note: The module will not render unless there are at least two similar restaurants.
 
 ## API
 

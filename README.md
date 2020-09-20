@@ -1,5 +1,5 @@
 # Re:View similar restaurants module
-This module displays up to six "similar restaurants" to the primary restaurant accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
+Welcome to Re:View, a restaurant rating website! This module displays up to six "similar restaurants" to the primary restaurant as accessed through the URL. "Similar" is here defined as "shares the same cuisine and neighborhood". The module renders at the bottom of the page, before the footer.
 
 ![Alt ](/screenshots/similar-grid-6.png?raw=true "Similar restaurants full grid of six")
 
@@ -37,22 +37,28 @@ A GET request to /restaurants/:id will fetch an object containing information on
 ### POST /restaurants
 
 A POST request to /restaurants will add a new restaurant to the database. It is extremely important that the request body contains the following properties with corresponding values:
- - name
- - price // represented as $, $$, $$$, $$$$, or $$$$
- - rating_label // "Service", "Food", etc.
- - rating_score // a string representation of a decimal number below five, rounded to nearest tenths digit, e.g. 4.2
- - description
- - category // "Italian", "Indian", etc.
- - url_handle // must be unique!
- - neighborhood
+ - name // string
+ - price // string, represented as  $, $$, $$$, $$$$, or $$$$
+ - rating_label // string, "Service", "Food", etc.
+ - rating_score // string, a representation of a decimal number below five, rounded to nearest tenths digit, e.g. "4.2"
+ - description // string
+ - category // number, representing the corresponding category ID
+ - neighborhood // number, representing the corresponding neighborhood ID
 
 ### POST /restaurants/:id/images
 
-A POST request to /restaurants/:id/images will add a photo for an existing restaurant. The request body must contain a url property with the corresponding url.
+A POST request to /restaurants/:id/images will add a photo for an existing restaurant. The request body need only contain a url property with the corresponding url.
 
 ### PUT /restaurants/:id
 
-A PUT request to /retaurants/:id will update the selected restaurant's existing record: the request body contains an object with any number of existing properties (listed above) along with desired new values.
+A PUT request to /retaurants/:id will update the selected restaurant's existing record: the request body must contain an object with any number of existing properties (listed above) along with desired new values. For example
+
+```
+{ name: 'New Name' }
+{ name: 'New Name', description: 'New description.' }
+{ price: '$', neighborhood: 6 }
+```
+Any number of the existing properties will be accepted by the route.
 
 ### DELETE /restaurants/:id
 
@@ -68,7 +74,7 @@ A DELETE request to /restaurants/:id will first remove all photos associated wit
 ## Development
 
 ### Installing Dependencies
-From within this repository's root directory:
+From within this repository's root directory, run the following:
 ```sh
 npm install
 ```
@@ -78,10 +84,17 @@ In order to seed the database, you first need to generate the data by running th
 ```sh
 node restaurantdatagen.js
 ```
-This will create separate CSV files for each PostgreSQL table: neighborhoods, categories, restaurants, and photos. In order to load the schema into the database, either run the psql.sql file in the shell, or manually define each table as written in psql.sql. Then, run COPY commands on each CSV file in turn. This will seed the database with 10M restaurants, 50K neighborhoods, 58 cuisine types, and around 35M preview photo urls.
+This will create separate CSV files for each PostgreSQL table: neighborhoods, categories, restaurants, and photos. In order to load the schema into the database, either run the psql.sql file (located in the project's root directory) in the terminal, or manually define each table in the psql shell, as written in psql.sql. 
+
+Then, from the psql shell, run COPY commands on each CSV file in turn, seeding all tables in the following order: Neighborhoods, Categories, Restaurants, Photos. For example:
+
+```sh
+COPY restaurants(name, price, rating_score, rating_label, description, category, neighborhood) FROM '/path/to/restaurantdata.csv' DELIMITER '|' CSV HEADER;
+```
+Once all CSV files have been properly copied, your Postgres database will be seeded with 10M restaurants, 50K neighborhoods, 58 cuisine types, and around 35M preview photo urls.
 
 ### Development Enviroment
-In two separate terminal windows:
+In two separate terminal windows, run the following:
 ```sh
 npm run start:dev
 npm run build:dev
@@ -91,6 +104,11 @@ npm run build:dev
 Using Jest and Enzyme.
 ```sh
 npm test
+```
+Should you alter the front-end code in such a way that changes the component snapshot, your Jest tests will fail. In order to update all snapshots, run the following:
+
+```sh
+npm test -- -u
 ```
 
 ## Screenshots
@@ -107,7 +125,7 @@ npm test
 
 ![Alt ](/screenshots/similar-grid-2.png?raw=true "Similar restaurants grid of two")
 
-### One restaurant has no photos
-A placeholder image is rendered.
+### If one restaurant has no photos...
+... a placeholder image is rendered.
 
 ![Alt ](/screenshots/similar-with-exception.png?raw=true "One restaurant has no photos")

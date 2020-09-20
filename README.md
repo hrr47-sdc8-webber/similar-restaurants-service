@@ -34,7 +34,7 @@ Use the following routes for all requests to the server:
 
 ### GET /restaurants/:id
 
-A GET request to /restaurants/:id will fetch an object containing information on the current restaurant, similar restaurants (based on category and neighborhood), and photos associated with the similar restaurants.
+A GET request to /restaurants/:id will fetch an object containing information on the current restaurant, similar restaurants (based on category and neighborhood), and photos associated with each similar restaurant.
 
 ### POST /restaurants
 

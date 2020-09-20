@@ -40,7 +40,7 @@ A GET request to ```/restaurants/:id``` will fetch an object containing informat
 
 ### POST ```/restaurants```
 
-A POST request to ```/restaurants``` will add a new restaurant to the database. It is extremely important that the request body contains the following properties with corresponding values:
+A POST request to ```/restaurants``` will add a new restaurant to the database. It is extremely important that the request body object contains the following properties with corresponding values:
  - name // string
  - price // string, represented as  $, $$, $$$, $$$$, or $$$$
  - rating_label // string, "Service", "Food", etc.

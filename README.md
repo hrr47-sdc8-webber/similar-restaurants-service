@@ -32,7 +32,7 @@ Direct your browser to ```http://localhost:3004/:id/```, replacing ```:id``` wit
 
 ## API
 
-As part of our renovation of the back-end, our team has implemented the following API routes. Should the front-end team choose to add further CRUD functionality client-side, please use the following:
+As part of back-end renovation, our team has implemented the following API routes. Should the front-end team choose to add further CRUD functionality client-side, please use the following:
 
 ### GET ```/restaurants/:id```
 

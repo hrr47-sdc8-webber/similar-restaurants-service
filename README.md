@@ -17,7 +17,7 @@ Welcome to Re:View, your restaurant resource! This module displays up to six "si
 ## Usage
 > Example URL: ```http://localhost:3004/2/```
 
-IMPORTANT: Before running the server in the dev environment, you will need to initialize and seed the database! Please see all information related to data generation below! 
+_*IMPORTANT:*_ Before running the server in the dev environment, you will need to initialize and seed the database! Please see all information related to data generation below! 
 
 Once your database is seeded and up and running, to initialize the page, run the following in two separate terminal windows:
 
